@@ -37,6 +37,20 @@
     $password2 = strip_tags( $_POST["reg_password2"] );
 
     $date = date( "Y-m-d" ); // Gets current date and formats it ( e.g. 2017-03-16 )
+
+    // Email validation
+    if ( $email == $email2 ) {
+
+      // Check if email has a valid extension
+      if ( filter_var($email, FILTER_VALIDATE_EMAIL) ) {
+        $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+      } else {
+        echo "Invalid format";
+      }
+
+    } else {
+      echo "Emails don't match";
+    }
   }
 ?>
 <!DOCTYPE html>
