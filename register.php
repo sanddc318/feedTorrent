@@ -136,7 +136,6 @@
           break;
         default:
           $profile_pic = "assets/images/profile-pics/defaults/orange.jpg";
-          break;
       }
     }
 
