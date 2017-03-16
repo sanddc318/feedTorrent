@@ -41,9 +41,18 @@
     // Email validation
     if ( $email == $email2 ) {
 
-      // Check if email has a valid extension
+      // Check if email has a valid extension...
       if ( filter_var($email, FILTER_VALIDATE_EMAIL) ) {
         $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+        // ...Now check if email already exists
+        $email_check = mysqli_query( $con, "SELECT email FROM users WHERE email = '$email'"  );
+        $num_rows = mysqli_num_rows( $email_check );
+
+        if ( $num_rows > 0 ) {
+          echo "Email already exists";
+        } // End unique email check
+
       } else {
         echo "Invalid format";
       }
@@ -73,7 +82,7 @@
     <br>
     <input type="password" name="reg_password2" placeholder="Confirm Password" required>
     <br>
-    <input type="submit" name="reg_button" value="Register" required>
+    <input type="submit" name="reg_button" value="Register">
   </form>
 
 
