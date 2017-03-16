@@ -2,7 +2,7 @@
   $con = mysqli_connect( "localhost", "root", "root", "social" );
 
   if ( mysqli_connect_errno() ) {
-    echo "Failed to connect: " . mysqli_connect_errno();
+    echo "Failed to connect: " . mysqli_connect_errno() . "<br>";
   }
 
   // Declaring variables to prevent errors
@@ -38,7 +38,7 @@
 
     $date = date( "Y-m-d" ); // Gets current date and formats it ( e.g. 2017-03-16 )
 
-    // Email validation
+    // Email validation ------
     if ( $email == $email2 ) {
 
       // Check if email has a valid extension...
@@ -50,15 +50,42 @@
         $num_rows = mysqli_num_rows( $email_check );
 
         if ( $num_rows > 0 ) {
-          echo "Email already exists";
+          echo "Email already exists <br>";
         } // End unique email check
 
       } else {
-        echo "Invalid format";
+        echo "Invalid format <br>";
       }
 
     } else {
-      echo "Emails don't match";
+      echo "Emails don't match <br>";
+    } // End email validation ------
+
+
+    // First name & last name validation ------
+    if ( strlen($fname) > 25 || strlen($fname) < 2 ) {
+      echo "Your first name must be between 2 and 25 characters <br>";
+    }
+
+    if ( strlen($lname) > 25 || strlen($lname) < 2 ) {
+      echo "Your last name must be between 2 and 25 characters <br>";
+    }
+
+
+    // Password validation ------
+    if ( $password != $password2 ) {
+      echo "Your passwords don't match <br>";
+    } else {
+
+      // Regex for making sure password uses English
+      if ( preg_match("/[^A-Za-z0-9]/", $password) ) {
+        echo "Your password can only contain English characters and numbers";
+      }
+
+    }
+
+    if ( strlen($password > 30) || strlen($password < 5) ) {
+      echo "Your password must be between 5 and 30 characters";
     }
   }
 ?>
