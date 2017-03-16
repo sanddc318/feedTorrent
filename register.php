@@ -1,7 +1,5 @@
 <?php
   session_start();
-
-
   $con = mysqli_connect( "localhost", "root", "root", "social" );
 
   if ( mysqli_connect_errno() ) {
@@ -38,10 +36,7 @@
     $_SESSION["reg_email2"] = $email2;
 
     $password = strip_tags( $_POST["reg_password"] );
-    $_SESSION["reg_password"] = $password;
-
     $password2 = strip_tags( $_POST["reg_password2"] );
-    $_SESSION["reg_password2"] = $password2;
 
     $date = date( "Y-m-d" ); // Gets current date and formats it ( e.g. 2017-03-16 )
 
@@ -91,8 +86,28 @@
 
     }
 
-    if ( strlen($password > 30) || strlen($password < 5) ) {
+    if ( strlen($password) > 30 || strlen($password) < 5 ) {
       array_push( $error_array, "Your password must be between 5 and 30 characters <br>" );
+    }
+
+
+    // If there are no errors
+    if ( empty($error_array) ) {
+      $password = md5( $password ); // Hash the password.
+
+      // Generate username by concatenating first name and last name
+      $username = strtolower( $fname . "_" . $lname );
+
+      // Check if username already exists...
+      $username_check = mysqli_query( $con, "SELECT username FROM users WHERE username = '$username'" );
+
+      //...If it does, keep adding number to username until it is unique
+      $i = 0;
+      while ( mysqli_num_rows($username_check) != 0 ) {
+        $i++;
+        $username = $username . "_" . $i;
+        $username_check = mysqli_query( $con, "SELECT username FROM users WHERE username = '$username'" );
+      }
     }
   }
 ?>
@@ -115,8 +130,6 @@
     <br>
     <?php if ( in_array("Your first name must be between 2 and 25 characters <br>", $error_array) )
             echo "Your first name must be between 2 and 25 characters <br>"; ?>
-
-
     <!-- Last name -->
     <input type="text" name="reg_lname" placeholder="Last Name"
           value="<?php
@@ -139,8 +152,6 @@
           ?>"
     required>
     <br>
-
-
     <!-- Confirm email -->
     <input type="email" name="reg_email2" placeholder="Confirm Email"
           value="<?php
@@ -150,30 +161,28 @@
           ?>"
     required>
     <br>
-    <?php if ( in_array("Email already exists <br>", $error_array) ) {
+    <?php if ( in_array("Email already exists <br>", $error_array) )
             echo "Email already exists <br>";
-    } else if ( in_array("Invalid format <br>", $error_array) ) {
+    else if ( in_array("Invalid format <br>", $error_array) )
             echo "Invalid format <br>";
-    } else if ( in_array("Emails don't match <br>", $error_array) ) {
+    else if ( in_array("Emails don't match <br>", $error_array) )
             echo "Emails don't match <br>";
-    } ?>
+    ?>
 
 
     <!-- Password -->
     <input type="password" name="reg_password" placeholder="Password" required>
     <br>
-
-
     <!-- Confirm password -->
     <input type="password" name="reg_password2" placeholder="Confirm Password" required>
     <br>
-    <?php if ( in_array("Your passwords don't match <br>", $error_array) ) {
+    <?php if ( in_array("Your passwords don't match <br>", $error_array) )
             echo "Your passwords don't match <br>";
-    } else if ( in_array("Your password can only contain English letters and numbers <br>", $error_array) ) {
+    else if ( in_array("Your password can only contain English letters and numbers <br>", $error_array) )
             echo "Your password can only contain English letters and numbers <br>";
-    } else if ( in_array("Your password must be between 5 and 30 characters <br>", $error_array) ) {
+    else if ( in_array("Your password must be between 5 and 30 characters <br>", $error_array) )
             echo "Your password must be between 5 and 30 characters <br>";
-    } ?>
+    ?>
 
     <input type="submit" name="reg_button" value="Register">
   </form>
