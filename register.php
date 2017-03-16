@@ -108,7 +108,38 @@
         $username = $username . "_" . $i;
         $username_check = mysqli_query( $con, "SELECT username FROM users WHERE username = '$username'" );
       }
+
+      // Assign profile picture
+      $rand = rand( 1, 8 ); // Create a random number between 1 and 8
+
+      switch ( $rand ) {
+        case 1:
+          $profile_pic = "assets/images/profile-pics/defaults/abstract.jpg";
+          break;
+        case 2:
+          $profile_pic = "assets/images/profile-pics/defaults/emblem.jpg";
+          break;
+        case 3:
+          $profile_pic = "assets/images/profile-pics/defaults/hexagon.jpg";
+          break;
+        case 4:
+          $profile_pic = "assets/images/profile-pics/defaults/mushroom.jpg";
+          break;
+        case 5:
+          $profile_pic = "assets/images/profile-pics/defaults/x.jpg";
+          break;
+        case 6:
+          $profile_pic = "assets/images/profile-pics/defaults/smiley.jpg";
+          break;
+        case 7:
+          $profile_pic = "assets/images/profile-pics/defaults/whale.jpg";
+          break;
+        default:
+          $profile_pic = "assets/images/profile-pics/defaults/orange.jpg";
+          break;
+      }
     }
+
   }
 ?>
 <!DOCTYPE html>
