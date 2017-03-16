@@ -1,3 +1,44 @@
+<?php
+  $con = mysqli_connect( "localhost", "root", "root", "social" );
+
+  if ( mysqli_connect_errno() ) {
+    echo "Failed to connect: " . mysqli_connect_errno();
+  }
+
+  // Declaring variables to prevent errors
+  $fname = "";
+  $lname = "";
+  $email = "";
+  $email2 = "";
+  $password = "";
+  $password2 = "";
+  $date = ""; // Date user signed up
+  $error_array = ""; // Holds error messages
+
+  if ( isset($_POST["reg_button"]) ) {
+    $fname = strip_tags( $_POST["reg_fname"] ); // Removes all HTML tags
+    $fname = str_replace( " ", "", $fname ); // Removes any whitespace
+    $fname = ucfirst( strtolower($fname) ); // Capitalize the return value
+
+    $lname = strip_tags( $_POST["reg_lname"] );
+    $lname = str_replace( " ", "", $lname );
+    $lname = ucfirst( strtolower($lname) );
+
+    $email = strip_tags( $_POST["reg_email"] );
+    $email = str_replace( " ", "", $email );
+    $email = ucfirst( strtolower($email) );
+
+    $email2 = strip_tags( $_POST["reg_email2"] );
+    $email2 = str_replace( " ", "", $email2 );
+    $email2 = ucfirst( strtolower($email2) );
+
+    $password = strip_tags( $_POST["reg_password"] );
+
+    $password2 = strip_tags( $_POST["reg_password2"] );
+
+    $date = date( "Y-m-d" ); // Gets current date and formats it ( e.g. 2017-03-16 )
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
