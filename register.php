@@ -137,6 +137,26 @@
         default:
           $profile_pic = "assets/images/profile-pics/defaults/orange.jpg";
       }
+
+      /* Everything should be good at this point.
+        Now insert user into the table */
+      $query = mysqli_query( $con, "INSERT INTO users
+                                    VALUES ('', '$fname', '$lname', '$username', '$email', '$password', '$date', '$profile_pic', 0, 0, 'no', ',')"
+                            );
+
+      // Just in case there are syntax errors or something...
+      if ( !$query ) {
+        echo 'Invalid query: ' . mysqli_error($con);
+      }
+
+      // Everthing went well, let the user know
+      array_push( $error_array, "<span style='color: #14c800'>You're all set! Go ahead and login!</span>" );
+
+      // Finally, clear the session
+      $_SESSION["reg_fname"] = "";
+      $_SESSION["reg_lname"] = "";
+      $_SESSION["reg_email"] = "";
+      $_SESSION["reg_email2"] = "";
     }
 
   }
@@ -215,6 +235,12 @@
     ?>
 
     <input type="submit" name="reg_button" value="Register">
+    <br>
+
+    <?php
+    if ( in_array("<span style='color: #14c800'>You're all set! Go ahead and login!</span>", $error_array) )
+        echo "<span style='color: #14c800'>You're all set! Go ahead and login!</span>";
+    ?>
   </form>
 
 
