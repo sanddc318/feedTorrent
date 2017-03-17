@@ -7,12 +7,25 @@
 
     // Make sure email and password are in the database
     $check_database_query = mysqli_query( $con, "SELECT * FROM users WHERE email = '$email'
-                                                AND password = '$password'" );
+                                                AND password = '$password'"
+                                        );
     $check_login_query = mysqli_num_rows( $check_database_query );
 
     // If it = 1, then a matching email and password combo has been found
     if ( $check_login_query == 1 ) {
       $row = mysqli_fetch_array( $check_database_query ); // Now the query results can be accessed
+
+      // Check if account has been deactivated
+      $user_closed_query = mysqli_query( $con, "SELECT * FROM users WHERE email = '$email'
+                                                AND user_closed = 'yes'"
+                                        );
+
+      if ( mysqli_num_rows($user_closed_query) == 1 ) {
+        $reopen_account = mysqli_query( $con, "UPDATE users
+                                              SET user_closed = 'no'
+                                              WHERE email = '$email'"
+                                      ); // If one is found, activate it again
+      }
 
       $username = $row["username"];
       $_SESSION["username"] = $username;
