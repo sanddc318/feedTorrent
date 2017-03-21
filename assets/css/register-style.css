@@ -17,6 +17,15 @@ body {
   font-family: 'Merienda One', cursive;
 }
 
+a {
+  text-decoration: none;
+  color: #2391ff;
+  font-size: .9em;
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  margin-bottom: 20px;
+}
+
 .wrapper {
   height: 100%;
   min-width: 950px;
@@ -82,3 +91,5 @@ input[type="email"]:hover,
 input[type="password"]:hover {
   border-color: #2391ff;
 }
+
+#second { display: none; }
