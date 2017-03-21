@@ -8,13 +8,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Swirlfeed | Sign Up</title>
+  <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/register-style.css">
 </head>
 <body>
   <div class="wrapper">
     <div class="login-box">
       <div class="login-header">
-        <h1>Swirlfeed</h1>
+        <h1>Swirlfeed!</h1>
         <span>Login or signup below</span>
       </div>
       <!-- Login Form -->
@@ -36,8 +37,6 @@
 
         <input type="submit" name="login_button" value="Login">
       </form>
-
-      <hr>
 
       <!-- Register Form -->
       <form action="register.php" method="POST">
