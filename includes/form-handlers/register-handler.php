@@ -143,7 +143,7 @@
       }
 
       // Everthing went well, let the user know
-      array_push( $error_array, "<span style='color: #14c800'>You're all set! Go ahead and login!</span>" );
+      array_push( $error_array, "You're all set! Go ahead and login!" );
 
       // Finally, clear the session
       $_SESSION["reg_fname"] = "";

@@ -4,24 +4,19 @@ html, body {
 }
 
 html {
-  background-image: url("../images/desktop.jpg");
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background-image: url("../images/swirls.gif");
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Merienda One', cursive;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
   text-decoration: none;
-  color: #2391ff;
+  color: #52afdd;
   font-size: .9em;
-  font-family: Arial, Helvetica, sans-serif;
   display: block;
   margin-bottom: 20px;
 }
@@ -49,11 +44,13 @@ form { text-align: center; }
 .login-header {
   width: 100%;
   height: 90px;
-  background-color: #2391ff;
-  color: #fff;
+  /*background-color: #52afdd;*/
+  border-bottom: 5px solid #52afdd;
+  color: #999;
   text-align: center;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  font-family: 'Merienda One', cursive;
 }
 
 .login-header h1 {
@@ -64,8 +61,8 @@ form { text-align: center; }
 }
 
 input[type="submit"] {
-  background-color: #2391ff;
-  margin: 5px 0px 15px 0px;
+  background-color: #52afdd;
+  margin: 15px 0px;
   padding: 5px 10px;
   border: none;
   border-radius: 3px;
@@ -89,7 +86,7 @@ input[type="password"] {
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover {
-  border-color: #2391ff;
+  border-color: #52afdd;
 }
 
 #second { display: none; }

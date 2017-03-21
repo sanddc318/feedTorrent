@@ -10,8 +10,24 @@
   <title>Swirlfeed | Sign Up</title>
   <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/register-style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="assets/js/register.js"></script>
 </head>
 <body>
+  <?php
+    // If there are errors upon registering, keep showing the reg form
+    if ( isset($_POST["reg_button"]) ) {
+      echo '
+        <script>
+          $(document).ready( function() {
+            $("#first").hide();
+            $("#second").show();
+          } )
+        </script>
+      ';
+    }
+  ?>
+
   <div class="wrapper">
     <div class="login-box">
       <div class="login-header">
@@ -34,7 +50,9 @@
 
           <?php
           if ( in_array("Email and/or password incorrect <br>", $error_array) )
-              echo "Email and/or password incorrect <br>";
+              echo "<span style='color: orangered; font-size: 13px'>
+                Email and/or password incorrect
+              </span><br>";
           ?>
 
           <input type="submit" name="login_button" value="Login">
@@ -56,7 +74,9 @@
           required>
           <br>
           <?php if ( in_array("Your first name must be between 2 and 25 characters <br>", $error_array) )
-                  echo "Your first name must be between 2 and 25 characters <br>"; ?>
+                  echo "<span style='color: orangered; font-size: 13px'>
+                    Your first name must be between 2 and 25 characters
+                  </span><br>"; ?>
           <!-- Last name -->
           <input type="text" name="reg_lname" placeholder="Last Name"
                 value="<?php
@@ -66,7 +86,9 @@
           required>
           <br>
           <?php if ( in_array("Your last name must be between 2 and 25 characters <br>", $error_array) )
-                  echo "Your last name must be between 2 and 25 characters <br>"; ?>
+                  echo "<span style='color: orangered; font-size: 13px'>
+                    Your last name must be between 2 and 25 characters
+                  </span><br>"; ?>
 
 
           <!-- Email -->
@@ -86,11 +108,17 @@
           required>
           <br>
           <?php if ( in_array("Email already exists <br>", $error_array) )
-                  echo "Email already exists <br>";
+                  echo "<span style='color: orangered; font-size: 13px'>
+                    Email already exists
+                  </span><br>";
           else if ( in_array("Invalid format <br>", $error_array) )
-                  echo "Invalid format <br>";
+                  echo "<span style='color: orangered; font-size: 13px'>
+                    Invalid format
+                  </span><br>";
           else if ( in_array("Emails don't match <br>", $error_array) )
-                  echo "Emails don't match <br>";
+                  echo "<span style='color: orangered; font-size: 13px'>
+                    Emails don't match
+                  </span><br>";
           ?>
 
 
@@ -101,11 +129,17 @@
           <input type="password" name="reg_password2" placeholder="Confirm Password" required>
           <br>
           <?php if ( in_array("Your passwords don't match <br>", $error_array) )
-                  echo "Your passwords don't match <br>";
-          else if ( in_array("Your password can only contain English letters and numbers <br>", $error_array) )
-                  echo "Your password can only contain English letters and numbers <br>";
+                  echo "<span style='color: orangered; font-size: 13px'>
+                    Your passwords don't match
+                  </span><br>";
+          else if (in_array("Your password can only contain English letters and numbers <br>", $error_array))
+                  echo "<span style='color: orangered; font-size: 13px'>
+                    Your password can only contain English letters and numbers
+                  </span><br>";
           else if ( in_array("Your password must be between 5 and 30 characters <br>", $error_array) )
-                  echo "Your password must be between 5 and 30 characters <br>";
+                  echo "<span style='color: orangered; font-size: 13px'>
+                    Your password must be between 5 and 30 characters
+                  </span><br>";
           ?>
 
           <input type="submit" name="reg_button" value="Register">
@@ -113,9 +147,11 @@
 
           <?php
           if (
-            in_array("<span style='color: #14c800'>You're all set! Go ahead and login!</span>", $error_array)
+            in_array("You're all set! Go ahead and login!", $error_array)
             )
-              echo "<span style='color: #14c800'>You're all set! Go ahead and login!</span>";
+              echo "<span style='color: green; font-size: 13px'>
+                You're all set! Go ahead and login!
+              </span><br>";
           ?>
           <br>
 
@@ -125,8 +161,5 @@
 
     </div> <!-- /.login-box -->
   </div> <!-- /.wrapper -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-  <script src="assets/js/register.js"></script>
 </body>
 </html>
