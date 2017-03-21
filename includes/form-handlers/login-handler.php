@@ -24,7 +24,7 @@
         $reopen_account = mysqli_query( $con, "UPDATE users
                                               SET user_closed = 'no'
                                               WHERE email = '$email'"
-                                      ); // If one is found, activate it again
+                                      ); // If so, activate it again
       }
 
       $username = $row["username"];
