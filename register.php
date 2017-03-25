@@ -8,8 +8,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Swirlfeed | Sign Up</title>
+  <!-- Googlefonts -->
   <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/register-style.css">
+  <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <script src="assets/js/register.js"></script>
 </head>
