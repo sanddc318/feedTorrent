@@ -1,1 +1,6 @@
-<h1>Home Page</h1>
+<?php include("includes/header.php"); ?>
+
+  <h1>Sup</h1>
+
+</body>
+</html>
