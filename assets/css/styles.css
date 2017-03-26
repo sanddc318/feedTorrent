@@ -14,8 +14,8 @@ a:hover { text-decoration: none; }
   width: 100%;
   min-width: 1050px;
   height: 40px;
-  background-color: #20aae5;
-  border-bottom: .25em solid #1894ca;
+  background-color: #d3d3d3;
+  border-bottom: .25em solid #ccc;
   margin: 0 0 10px 0;
   display: inline-flex;
   position: fixed;
@@ -49,13 +49,21 @@ nav a {
   padding: 0px 12px 8px 12px;
   margin: 0;
 }
+nav a:hover { color: #fff; }
 
-nav a.nav-link:hover { border-bottom: .25em solid #e67e22; }
-nav a.user:hover, nav a.nav-link:hover { color: #fff; }
+nav a.nav-link {
+  border-bottom: transparent;
+  transition-property: color, border-bottom;
+  transition-duration: .2s;
+}
+nav a.nav-link:hover {
+  color: #333;
+  border-bottom: .25em solid #333;
+}
 
 
 
-/* Main content styles */
+/* User detail styles */
 .wrapper {
   margin: 0px auto;
   top: 50px;
@@ -98,3 +106,48 @@ nav a.user:hover, nav a.nav-link:hover { color: #fff; }
 }
 
 
+
+/* News feed / new post styles */
+textarea:focus {
+  outline: 0;
+}
+
+.main-column {
+  float: right;
+  width: 65%;
+  z-index: -1;
+  min-height: 60px;
+}
+
+.post-form { width: 100%; }
+
+.post-form textarea {
+  width: 80%;
+  height: 60px;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: 1px solid #d3d3d3;
+  font-size: 12px;
+  padding: 8px;
+}
+
+.post-form input[type="submit"] {
+  width: 10%;
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Merienda One', cursive;
+  text-shadow: #888 0.5px 0.5px 0px;
+  position: absolute;
+  outline: 0;
+  margin: 0;
+  background-color: #d3d3d3;
+  color: #333;
+  transition-property: background-color, color;
+  transition-duration: .1s, .1s;
+}
+.post-form input[type="submit"]:active {
+  padding: 5px 4px 4px 5px;
+  background-color: #333;
+  color: #fff;
+}
