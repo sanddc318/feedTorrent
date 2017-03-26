@@ -1,5 +1,15 @@
+/* Core styles */
+body {
+  line-height: 17px;
+  background-color: #e6eae8;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 a:hover { text-decoration: none; }
 
+
+
+/* Navigation bar styles */
 .top-bar {
   width: 100%;
   min-width: 1050px;
@@ -8,14 +18,83 @@ a:hover { text-decoration: none; }
   border-bottom: .25em solid #1894ca;
   margin: 0 0 10px 0;
   display: inline-flex;
+  position: fixed;
+  z-index: 66;
 }
 
 .logo a {
   font-family: 'Merienda One', cursive;
   margin-left: 10px;
-  font-size: 1.5em;
+  font-size: 24px;
   position: relative;
-  top: 9%;
+  top: 9px;
   text-shadow: #888 0.5px 0.5px 0px;
   color: #333;
 }
+
+nav {
+  float: right;
+  position: absolute;
+  right: 1px;
+  margin: 10px;
+}
+
+nav a {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  font-size: 17px;
+  display: inline-block;
+  text-align: center;
+  padding: 0px 12px 8px 12px;
+  margin: 0;
+}
+
+nav a.nav-link:hover { border-bottom: .25em solid #e67e22; }
+nav a.user:hover, nav a.nav-link:hover { color: #fff; }
+
+
+
+/* Main content styles */
+.wrapper {
+  margin: 0px auto;
+  top: 50px;
+  position: relative;
+  padding: 0px 10px;
+  width: 75%;
+  min-width: 950px;
+}
+
+.column {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px #d3d3d3;
+  z-index: -1;
+}
+
+.user-details {
+  width: 330px;
+  float: left;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.user-details img {
+  height: 125px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.user-details-leftcol-right {
+  width: 175px;
+  display: inline-block;
+  position: absolute;
+}
+
+.user-details-leftcol-right .name > a {
+  font-size: 1.2em;
+}
+
+
