@@ -1,4 +1,5 @@
 <?php include("includes/header.php"); ?>
+<?php include("includes/classes/User.php"); ?>
 
   <div class="user-details column">
     <a href="<?php echo $loggedInUser; ?>">
@@ -25,6 +26,11 @@
       <textarea name="post-text" id="post-text" placeholder="Got something to say?"></textarea>
       <input type="submit" name="post" id="post_button" value="Post">
     </form>
+
+    <?php
+      $user_obj = new User( $con, $loggedInUser );
+      echo $user_obj->getFirstAndLastName();
+    ?>
   </div>
 
   </div> <!-- /.wrapper (header.php) -->
