@@ -36,8 +36,8 @@
     </form>
 
     <?php
-      $user_obj = new User( $con, $loggedInUser );
-      echo $user_obj->getFirstAndLastName();
+      $post = new Post( $con, $loggedInUser );
+      $post->loadPostsFriends();
     ?>
   </div>
 

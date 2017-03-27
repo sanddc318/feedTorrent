@@ -13,7 +13,7 @@
     public function submitPost( $body, $user_to ) {
       $body = strip_tags( $body ); // Removes HTML tags
       $body = mysqli_real_escape_string( $this->con, $body ); // Removes special characters
-      $check_empty = preg_replace( "/\s/", "", "$body" ); // Removes all whitespace
+      $check_empty = preg_replace( "/\s+/", "", "$body" ); // Removes all whitespace
 
       if ( $check_empty != "" ) {
         $date_added = date( "Y-m-d H:i:s" );
@@ -46,7 +46,7 @@
                                          WHERE deleted = 'no'
                                          ORDER BY id DESC" );
       while ( $row = mysqli_fetch_array($data) ) {
-        $id = $row["row"];
+        $id = $row["id"];
         $body = $row["body"];
         $added_by = $row["added_by"];
         $date_time = $row["date_added"];
@@ -58,11 +58,11 @@
           $user_to_obj = new User( $con, $row["user_to"] );
           $user_to_name = $user_to_obj->getFirstAndLastName();
           // Return link to user profile page and their first + last name as the link text
-          $user_to = "<a href='" . $row["user_to"] . "'>" . $user_to_name . "</a>";
+          $user_to = "to <a href='" . $row["user_to"] . "'>" . $user_to_name . "</a>";
         }
 
         // Check if posting user has their account closed
-        $added_by_obj = new User( $con, $added_by );
+        $added_by_obj = new User( $this->con, $added_by );
         if ( $added_by_obj->isClosed() ) {
           continue;
         }
@@ -71,6 +71,9 @@
                                                          FROM users
                                                          WHERE username = '$added_by'" );
         $user_row = mysqli_fetch_array( $user_details_query );
+        $first_name = $user_row["first_name"];
+        $last_name = $user_row["last_name"];
+        $profile_pic = $user_row["profile_pic"];
 
         // Get a timestamp
         $date_time_now = date( "Y-m-d H:i:s" );
@@ -137,7 +140,22 @@
           }
 
         }
+        // Final output
+        $str .= "<div class='status-post'>
+                  <div class='post-profile-pic'>
+                    <img src='$profile_pic' width='50'>
+                  </div>
+
+                  <div class='posted_by' style='color: #acacac;'>
+                    <a href='$added_by'>$first_name $last_name</a>
+                    $user_to &nbsp;&nbsp;&nbsp;&nbsp; $time_message
+                  </div>
+                  <div id='post_body'>
+                    $body <br>
+                  </div>
+                </div>";
       } // End while
+      echo $str;
     }
 
   }
