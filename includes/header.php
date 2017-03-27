@@ -42,6 +42,9 @@
       <a href="#" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i></a>
       <a href="#" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i></a>
       <a href="#" class="nav-link"><i class="fa fa-users" aria-hidden="true"></i></a>
+      <a href="includes/handlers/logout.php" class="nav-link">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
     </nav>
   </div>
 
