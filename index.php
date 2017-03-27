@@ -1,5 +1,13 @@
-<?php include("includes/header.php"); ?>
-<?php include("includes/classes/User.php"); ?>
+<?php
+  include("includes/header.php");
+  include("includes/classes/User.php");
+  include("includes/classes/Post.php");
+
+  if ( isset($_POST["post"]) ) {
+    $post = new Post( $con, $loggedInUser );
+    $post->submitPost( $_POST["post-text"], "none" );
+  }
+?>
 
   <div class="user-details column">
     <a href="<?php echo $loggedInUser; ?>">
