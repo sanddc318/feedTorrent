@@ -24,6 +24,16 @@
       return $row["num_posts"];
     }
 
+    public function isFriend( $username_to_check ) {
+      $usernameComma = "," . $username_to_check . ",";
+
+      if ( strstr($this->user["friends_array"], $usernameComma) || $username_to_check == $this->user["username"] ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     public function isClosed() {
       $username = $this->user["username"];
       $query = mysqli_query( $this->con, "SELECT user_closed FROM users
@@ -45,14 +55,12 @@
       return $row["first_name"] . " " . $row["last_name"];
     }
 
-    public function isFriend( $username_to_check ) {
-      $usernameComma = "," . $username_to_check . ",";
-
-      if ( strstr($this->user["friends_array"], $usernameComma) || $username_to_check == $this->user["username"] ) {
-        return true;
-      } else {
-        return false;
-      }
+    public function getProfilePic() {
+      $username = $this->user["username"];
+      $query = mysqli_query( $this->con, "SELECT profile_pic FROM users
+                                          WHERE username = '$username'" );
+      $row = mysqli_fetch_array( $query );
+      return $row["profile_pic"];
     }
 
   }
