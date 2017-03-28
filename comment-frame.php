@@ -19,9 +19,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title></title>
+  <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+
+  <style>
+    * {
+      font-size: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+
+
   <script>
     function toggle() {
       var element = document.getElementById("comment-section");
@@ -154,7 +164,7 @@
             <img src="<?php echo $user_obj->getProfilePic(); ?>"
                 title="<?php echo $posted_by; ?>"
                 style="float: left;"
-                height=30
+                height="30"
             >
           </a>
           <a href="<?php echo $posted_by; ?>" target="_parent">

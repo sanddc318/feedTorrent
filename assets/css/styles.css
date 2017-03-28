@@ -5,7 +5,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-a:hover { text-decoration: none; }
+a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #337ab7;
+}
 
 
 
@@ -157,6 +165,7 @@ textarea:focus {
   font-size: 15px;
   padding: 0px 5px;
   min-height: 75px;
+  cursor: pointer;
 }
 
 .post-profile-pic {
@@ -166,4 +175,51 @@ textarea:focus {
 
 .post-profile-pic > img {
   border-radius: 5px;
+}
+
+
+
+/* Comments */
+#comment-iframe {
+  max-height: 250px;
+  width: 100%;
+}
+
+.comment-section { padding: 0 5px 5px 5px; }
+
+.comment-section a > img {
+   margin: 0 6px 3px 3px;
+   border-radius: 5px;
+}
+
+#comment-form textarea {
+  border: #d3d3d3;
+  border-radius: 5px;
+  width: 85%;
+  height: 35px;
+  color: #616060;
+  font-size: 14px;
+  margin: 3px 3px 3px 5px;
+}
+
+#comment-form input[type="submit"] {
+  width: 13%;
+  height: 45px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Merienda One', cursive;
+  text-shadow: #888 0.5px 0.5px 0px;
+  position: absolute;
+  outline: 0;
+  margin: 0;
+  background-color: #d3d3d3;
+  color: #333;
+  transition-property: background-color, color;
+  transition-duration: .1s, .1s;
+}
+
+#comment-form input[type="submit"]:active {
+  padding: 5px 4px 4px 5px;
+  background-color: #333;
+  color: #fff;
 }
