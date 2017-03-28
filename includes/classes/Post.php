@@ -105,7 +105,21 @@
             $user_row = mysqli_fetch_array( $user_details_query );
             $username = $user_row["username"];
             $profile_pic = $user_row["profile_pic"];
+?>
 
+            <script>
+              function toggle<?php echo $id; ?>() {
+                var element = document.getElementById("toggleComment<?php echo $id; ?>");
+
+                if ( element.style.display == "block" ) {
+                  element.style.display = "none";
+                } else {
+                  element.style.display = "block";
+                }
+              }
+            </script>
+
+<?php
             // Get a timestamp
             $date_time_now = date( "Y-m-d H:i:s" );
             $start_date = new Datetime( $date_time ); // Time of post creation
@@ -114,65 +128,65 @@
 
             if ( $interval->y >= 1 ) { // Years
 
-              if ( $interval == 1 ) {
-                $time_message = $interval->y . " year ago";
-              } else {
-                $time_message = $interval->y . " years ago";
-              }
+                  if ( $interval == 1 ) {
+                    $time_message = $interval->y . " year ago";
+                  } else {
+                    $time_message = $interval->y . " years ago";
+                  }
 
             } else if ( $interval->m >= 1 ) { // If at least a month old
 
-              if ( $interval->d == 0 ) {
-                $days = " ago"; // If exactly a month, just add "ago" after the month (e.g. "4 months ago")
-              } else if ( $interval->d == 1 ) {
-                // Otherwise...
-                $days = $interval->d . " day ago"; // "1 day ago"
-              } else {
-                $days = $interval->d . " days ago"; // "(n) days ago"
-              }
+                  if ( $interval->d == 0 ) {
+                    $days = " ago"; // If exactly a month, just add "ago" (e.g. "4 months ago")
+                  } else if ( $interval->d == 1 ) {
+                    // Otherwise...
+                    $days = $interval->d . " day ago"; // "1 day ago"
+                  } else {
+                    $days = $interval->d . " days ago"; // "(n) days ago"
+                  }
 
-              // Now concatenate the month(s) and day(s)
-              if ( $interval->m == 1 ) {
-                $time_message = $interval->m . " month," . $days; // e.g. "1 month, 6 days ago"
-              } else {
-                $time_message = $interval->m . " months," . $days; // e.g. "8 months, 1 day ago"
-              }
+                  // Now concatenate the month(s) and day(s)
+                  if ( $interval->m == 1 ) {
+                    $time_message = $interval->m . " month," . $days; // e.g. "1 month, 6 days ago"
+                  } else {
+                    $time_message = $interval->m . " months," . $days; // e.g. "8 months, 1 day ago"
+                  }
 
             } else if ( $interval->d >= 1 ) {
 
-              if ( $interval->d == 1 ) {
-                $time_message = "Yesterday"; // If exactly one day, just say "yesterday"
-              } else {
-                $time_message = $interval->d . " days ago";
-              }
+                  if ( $interval->d == 1 ) {
+                    $time_message = "Yesterday"; // If exactly one day, just say "yesterday"
+                  } else {
+                    $time_message = $interval->d . " days ago";
+                  }
 
             } else if ( $interval->h >= 1 ) { // Hours
 
-              if ( $interval->h == 1 ) {
-                $time_message = $interval->h . " hour ago";
-              } else {
-                $time_message = $interval->h . " hours ago";
-              }
+                  if ( $interval->h == 1 ) {
+                    $time_message = $interval->h . " hour ago";
+                  } else {
+                    $time_message = $interval->h . " hours ago";
+                  }
 
             } else if ( $interval->i >= 1 ) { // Minutes
 
-              if ( $interval->i == 1 ) {
-                $time_message = $interval->i . " minute ago";
-              } else {
-                $time_message = $interval->i . " minutes ago";
-              }
+                  if ( $interval->i == 1 ) {
+                    $time_message = $interval->i . " minute ago";
+                  } else {
+                    $time_message = $interval->i . " minutes ago";
+                  }
 
             } else { // Seconds
 
-              if ( $interval->s < 30 ) {
-                $time_message = "Just now";
-              } else {
-                $time_message = $interval->s . " seconds ago";
-              }
+                  if ( $interval->s < 30 ) {
+                    $time_message = "Just now";
+                  } else {
+                    $time_message = $interval->s . " seconds ago";
+                  }
 
-            }
+            } // End timestamp code
             // Final output
-            $str .= "<div class='status-post'>
+            $str .= "<div class='status-post' onClick='javascript:toggle$id()'>
                       <div class='post-profile-pic'>
                         <img src='$profile_pic' width='50'>
                       </div>
@@ -184,6 +198,14 @@
                       <div id='post_body'>
                         $body <br>
                       </div>
+                    </div>
+
+                    <div class='post-comment' id='toggleComment$id' style='display: none;'>
+                      <iframe id='comment-iframe'
+                              src='comment-frame.php?post_id=$id'
+                              frameborder='0'
+                      >
+                      </iframe>
                     </div>
                     <hr>";
           } // End if block user_logged_obj
