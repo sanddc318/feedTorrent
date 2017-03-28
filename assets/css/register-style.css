@@ -92,4 +92,10 @@ input[type="password"]:hover {
   border-color: #52afdd;
 }
 
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: 0;
+}
+
 #second { display: none; }

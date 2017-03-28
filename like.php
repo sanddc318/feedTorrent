@@ -22,6 +22,19 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    form {
+      position: absolute;
+      top: 2px;
+    }
+  </style>
+
+
   <?php
     // Get id of post
     if ( isset($_GET["post_id"]) ) {
@@ -82,14 +95,14 @@
     if ( $num_rows > 0 ) {
       echo "<form action='like.php?post_id=" . $post_id . "'method='POST'>
               <input type='submit' class='comment-like' name='unlike-button' value='Unlike'>
-              <div class='like_value'>
+              <div class='like-value'>
                 " . $total_likes . " Likes
               </div>
             </form>";
     } else {
       echo "<form action='like.php?post_id=" . $post_id . "'method='POST'>
               <input type='submit' class='comment-like' name='like-button' value='Like'>
-              <div class='like_value'>
+              <div class='like-value'>
                 " . $total_likes . " Likes
               </div>
             </form>";

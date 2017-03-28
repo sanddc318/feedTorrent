@@ -186,6 +186,31 @@ textarea:focus {
   color: #337ab7;
   border: none;
 }
+
+.newsfeed-post-options > iframe {
+  border: 0;
+  height: 17px;
+  width: 128px;
+}
+
+.comment-like {
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  color: #337ab7;
+  padding: 0;
+  height: auto;
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+.comment-like:focus { outline: 0; }
+
+.like-value {
+  display: inline;
+  font-size: 14px;
+}
 /* //////////////////////////////// */
 
 
