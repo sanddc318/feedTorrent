@@ -14,6 +14,7 @@ a:hover {
   text-decoration: none;
   color: #337ab7;
 }
+/* //////////////////////////////// */
 
 
 
@@ -68,6 +69,7 @@ nav a.nav-link:hover {
   color: #333;
   border-bottom: .25em solid #333;
 }
+/* //////////////////////////////// */
 
 
 
@@ -112,6 +114,7 @@ nav a.nav-link:hover {
 .user-details-leftcol-right .name > a {
   font-size: 1.2em;
 }
+/* //////////////////////////////// */
 
 
 
@@ -177,12 +180,21 @@ textarea:focus {
   border-radius: 5px;
 }
 
+.newsfeed-post-options {
+  padding: 0px;
+  text-decoration: none;
+  color: #337ab7;
+  border: none;
+}
+/* //////////////////////////////// */
+
 
 
 /* Comments */
 #comment-iframe {
   max-height: 250px;
   width: 100%;
+  margin-top: 5px;
 }
 
 .comment-section { padding: 0 5px 5px 5px; }
@@ -223,3 +235,4 @@ textarea:focus {
   background-color: #333;
   color: #fff;
 }
+/* //////////////////////////////// */

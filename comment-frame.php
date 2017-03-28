@@ -175,7 +175,9 @@
 
   <?php
       } // End while loop
-    }
+    } else {
+      echo "<center><br><br>Be the first to comment!</center>";
+    } // End if block $count != 0
   ?>
 </body>
 </html>

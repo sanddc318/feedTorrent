@@ -109,17 +109,27 @@
 
             <script>
               function toggle<?php echo $id; ?>() {
-                var element = document.getElementById("toggleComment<?php echo $id; ?>");
+                var target = $(event.target);
 
-                if ( element.style.display == "block" ) {
-                  element.style.display = "none";
-                } else {
-                  element.style.display = "block";
+                if ( !target.is("a") ) {
+                  var element = document.getElementById("toggleComment<?php echo $id; ?>");
+
+                  if ( element.style.display == "block" ) {
+                    element.style.display = "none";
+                  } else {
+                    element.style.display = "block";
+                  }
+
                 }
               }
             </script>
 
 <?php
+            // Check how many comments there are
+            $comment_check = mysqli_query( $this->con, "SELECT * FROM comments
+                                                  WHERE post_id = '$id'" );
+            $comment_check_num = mysqli_num_rows( $comment_check );
+
             // Get a timestamp
             $date_time_now = date( "Y-m-d H:i:s" );
             $start_date = new Datetime( $date_time ); // Time of post creation
@@ -196,7 +206,12 @@
                         $user_to &nbsp;&nbsp;&nbsp;&nbsp; $time_message
                       </div>
                       <div id='post_body'>
-                        $body <br>
+                        $body <br><br><br>
+                      </div>
+
+                      <div class='newsfeed-post-options'>
+                        Comments ($comment_check_num) &nbsp;&nbsp;&nbsp;
+
                       </div>
                     </div>
 
