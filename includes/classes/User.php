@@ -45,5 +45,15 @@
       return $row["first_name"] . " " . $row["last_name"];
     }
 
+    public function isFriend( $username_to_check ) {
+      $usernameComma = "," . $username_to_check . ",";
+
+      if ( strstr($this->user["friends_array"], $usernameComma) || $username_to_check == $this->user["username"] ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
   }
 ?>

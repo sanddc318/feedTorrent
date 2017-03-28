@@ -84,106 +84,110 @@
             continue;
           }
 
-          // UNDERSTAND THIS ------------------------------------------
-          if ( $num_iterations++ < $start )
-            continue;
+          $user_logged_obj = new User( $this->con, $loggedInUser );
+          if ( $user_logged_obj->isFriend($added_by) ) {
 
-          // Once 10 posts have been loaded, break
-          if ( $count > $limit ) {
-            break;
-          } else {
-            $count++;
-          }
-          // END UNDERSTAND THIS ------------------------------------------
+            // UNDERSTAND THIS ------------------------------------------
+            if ( $num_iterations++ < $start )
+              continue;
 
-          $user_details_query = mysqli_query( $this->con, "SELECT username, profile_pic
-                                                          FROM users
-                                                          WHERE username = '$added_by'" );
-          $user_row = mysqli_fetch_array( $user_details_query );
-          $username = $user_row["username"];
-          $profile_pic = $user_row["profile_pic"];
-
-          // Get a timestamp
-          $date_time_now = date( "Y-m-d H:i:s" );
-          $start_date = new Datetime( $date_time ); // Time of post creation
-          $end_date = new Datetime( $date_time_now ); // Latest activity
-          $interval = $start_date->diff( $end_date );
-
-          if ( $interval->y >= 1 ) { // Years
-
-            if ( $interval == 1 ) {
-              $time_message = $interval->y . " year ago";
+            // Once 10 posts have been loaded, break
+            if ( $count > $limit ) {
+              break;
             } else {
-              $time_message = $interval->y . " years ago";
+              $count++;
             }
+            // END UNDERSTAND THIS ------------------------------------------
 
-          } else if ( $interval->m >= 1 ) { // If at least a month old
+            $user_details_query = mysqli_query( $this->con, "SELECT username, profile_pic
+                                                            FROM users
+                                                            WHERE username = '$added_by'" );
+            $user_row = mysqli_fetch_array( $user_details_query );
+            $username = $user_row["username"];
+            $profile_pic = $user_row["profile_pic"];
 
-            if ( $interval->d == 0 ) {
-              $days = " ago"; // If exactly a month, just add "ago" after the month (e.g. "4 months ago")
-            } else if ( $interval->d == 1 ) {
-              // Otherwise...
-              $days = $interval->d . " day ago"; // "1 day ago"
-            } else {
-              $days = $interval->d . " days ago"; // "(n) days ago"
+            // Get a timestamp
+            $date_time_now = date( "Y-m-d H:i:s" );
+            $start_date = new Datetime( $date_time ); // Time of post creation
+            $end_date = new Datetime( $date_time_now ); // Latest activity
+            $interval = $start_date->diff( $end_date );
+
+            if ( $interval->y >= 1 ) { // Years
+
+              if ( $interval == 1 ) {
+                $time_message = $interval->y . " year ago";
+              } else {
+                $time_message = $interval->y . " years ago";
+              }
+
+            } else if ( $interval->m >= 1 ) { // If at least a month old
+
+              if ( $interval->d == 0 ) {
+                $days = " ago"; // If exactly a month, just add "ago" after the month (e.g. "4 months ago")
+              } else if ( $interval->d == 1 ) {
+                // Otherwise...
+                $days = $interval->d . " day ago"; // "1 day ago"
+              } else {
+                $days = $interval->d . " days ago"; // "(n) days ago"
+              }
+
+              // Now concatenate the month(s) and day(s)
+              if ( $interval->m == 1 ) {
+                $time_message = $interval->m . " month," . $days; // e.g. "1 month, 6 days ago"
+              } else {
+                $time_message = $interval->m . " months," . $days; // e.g. "8 months, 1 day ago"
+              }
+
+            } else if ( $interval->d >= 1 ) {
+
+              if ( $interval->d == 1 ) {
+                $time_message = "Yesterday"; // If exactly one day, just say "yesterday"
+              } else {
+                $time_message = $interval->d . " days ago";
+              }
+
+            } else if ( $interval->h >= 1 ) { // Hours
+
+              if ( $interval->h == 1 ) {
+                $time_message = $interval->h . " hour ago";
+              } else {
+                $time_message = $interval->h . " hours ago";
+              }
+
+            } else if ( $interval->i >= 1 ) { // Minutes
+
+              if ( $interval->i == 1 ) {
+                $time_message = $interval->i . " minute ago";
+              } else {
+                $time_message = $interval->i . " minutes ago";
+              }
+
+            } else { // Seconds
+
+              if ( $interval->s < 30 ) {
+                $time_message = "Just now";
+              } else {
+                $time_message = $interval->s . " seconds ago";
+              }
+
             }
+            // Final output
+            $str .= "<div class='status-post'>
+                      <div class='post-profile-pic'>
+                        <img src='$profile_pic' width='50'>
+                      </div>
 
-            // Now concatenate the month(s) and day(s)
-            if ( $interval->m == 1 ) {
-              $time_message = $interval->m . " month," . $days; // e.g. "1 month, 6 days ago"
-            } else {
-              $time_message = $interval->m . " months," . $days; // e.g. "8 months, 1 day ago"
-            }
-
-          } else if ( $interval->d >= 1 ) {
-
-            if ( $interval->d == 1 ) {
-              $time_message = "Yesterday"; // If exactly one day, just say "yesterday"
-            } else {
-              $time_message = $interval->d . " days ago";
-            }
-
-          } else if ( $interval->h >= 1 ) { // Hours
-
-            if ( $interval->h == 1 ) {
-              $time_message = $interval->h . " hour ago";
-            } else {
-              $time_message = $interval->h . " hours ago";
-            }
-
-          } else if ( $interval->i >= 1 ) { // Minutes
-
-            if ( $interval->i == 1 ) {
-              $time_message = $interval->i . " minute ago";
-            } else {
-              $time_message = $interval->i . " minutes ago";
-            }
-
-          } else { // Seconds
-
-            if ( $interval->s < 30 ) {
-              $time_message = "Just now";
-            } else {
-              $time_message = $interval->s . " seconds ago";
-            }
-
-          }
-          // Final output
-          $str .= "<div class='status-post'>
-                    <div class='post-profile-pic'>
-                      <img src='$profile_pic' width='50'>
+                      <div class='posted_by' style='color: #acacac;'>
+                        <a href='$added_by'>#$username</a>
+                        $user_to &nbsp;&nbsp;&nbsp;&nbsp; $time_message
+                      </div>
+                      <div id='post_body'>
+                        $body <br>
+                      </div>
                     </div>
-
-                    <div class='posted_by' style='color: #acacac;'>
-                      <a href='$added_by'>#$username</a>
-                      $user_to &nbsp;&nbsp;&nbsp;&nbsp; $time_message
-                    </div>
-                    <div id='post_body'>
-                      $body <br>
-                    </div>
-                  </div>
-                  <hr>";
-        } // End while
+                    <hr>";
+          } // End if block user_logged_obj
+        } // End while loop
 
         if ( $count > $limit ) {
           $str .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'>
