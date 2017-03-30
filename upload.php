@@ -91,7 +91,7 @@ if (isset($_POST['x'])){
 	//the file type posted
 		$type = $_POST['type'];
 	//the image src
-		$src = 'assets/images/profile_pics/'.$_POST['src'];
+		$src = 'assets/images/profile-pics/'.$_POST['src'];
 		$finalname = $profile_id.md5(time());
 
 	if($type == 'jpg' || $type == 'jpeg' || $type == 'JPG' || $type == 'JPEG'){
@@ -106,7 +106,7 @@ if (isset($_POST['x'])){
 			imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
 			$targ_w,$targ_h,$_POST['w'],$_POST['h']);
 		//save the new cropped version
-			imagejpeg($dst_r, "assets/images/profile_pics/".$finalname."n.jpeg", 90);
+			imagejpeg($dst_r, "assets/images/profile-pics/".$finalname."n.jpeg", 90);
 
 	}else if($type == 'png' || $type == 'PNG'){
 
@@ -120,7 +120,7 @@ if (isset($_POST['x'])){
 			imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
 			$targ_w,$targ_h,$_POST['w'],$_POST['h']);
 		//save the new cropped version
-			imagejpeg($dst_r, "assets/images/profile_pics/".$finalname."n.jpeg", 90);
+			imagejpeg($dst_r, "assets/images/profile-pics/".$finalname."n.jpeg", 90);
 
 	}else if($type == 'gif' || $type == 'GIF'){
 
@@ -134,7 +134,7 @@ if (isset($_POST['x'])){
 			imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
 			$targ_w,$targ_h,$_POST['w'],$_POST['h']);
 		//save the new cropped version
-			imagejpeg($dst_r, "assets/images/profile_pics/".$finalname."n.jpeg", 90);
+			imagejpeg($dst_r, "assets/images/profile-pics/".$finalname."n.jpeg", 90);
 
 	}
 		//free up memory
@@ -143,11 +143,11 @@ if (isset($_POST['x'])){
 			@ unlink($src); // delete the original upload
 
 		//return cropped image to page
-		$result_path ="assets/images/profile_pics/".$finalname."n.jpeg";
+		$result_path ="assets/images/profile-pics/".$finalname."n.jpeg";
 
 		//Insert image into database
-		$insert_pic_query = mysqli_query($con, "UPDATE users SET profile_pic='$result_path' WHERE username='$userLoggedIn'");
-		header("Location: ".$userLoggedIn);
+		$insert_pic_query = mysqli_query($con, "UPDATE users SET profile_pic='$result_path' WHERE username='$loggedInUser'");
+		header("Location: ".$loggedInUser);
 
 }// post x
 ?>
