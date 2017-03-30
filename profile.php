@@ -1,5 +1,7 @@
 <?php
   include("includes/header.php");
+  include("includes/classes/User.php");
+  include("includes/classes/Post.php");
 
   if ( isset($_GET["profile_username"]) ) {
     $username = $_GET["profile_username"];
@@ -20,7 +22,7 @@
   <link rel="stylesheet" href="assets/css/profile.css">
 </head>
 <body>
-
+    <!-- Sidebar -->
     <div class="profile-left">
       <img src="<?php echo $user_array['profile_pic']; ?>" alt="">
 
@@ -29,8 +31,34 @@
         <p><?php echo "Likes: " . $user_array["num_likes"]; ?></p>
         <p><?php echo "Friends: " . $num_friends; ?></p>
       </div>
+
+      <form action="<?php echo $username; ?>">
+        <?php
+          $profile_user_obj = new User( $con, $username );
+
+          if ( $profile_user_obj->isClosed() ) {
+            header( "Location: user-closed.php" );
+          }
+
+
+          $logged_in_user_obj = new User( $con, $loggedInUser );
+
+          if ( $loggedInUser != $username ) {
+
+            if ( $logged_in_user_obj->isFriend($username) ) {
+              echo "<input type='submit'
+                           name='remove-friend'
+                           class='danger'
+                           value='Remove Friend'
+                    > <br>";
+            }
+
+          }
+        ?>
+      </form>
     </div>
 
+    <!-- Feed -->
     <div class="main-column column">
       <?php echo $username; ?>
     </div>
