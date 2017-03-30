@@ -48,8 +48,26 @@
             if ( $logged_in_user_obj->isFriend($username) ) {
               echo "<input type='submit'
                            name='remove-friend'
-                           class='danger'
+                           class='profile-button danger'
                            value='Remove Friend'
+                    > <br>";
+            } else if ( $logged_in_user_obj->didReceiveRequest($username) ) {
+              echo "<input type='submit'
+                           name='respond-request'
+                           class='profile-button default'
+                           value='Respond'
+                    > <br>";
+            } else if ( $logged_in_user_obj->didSendRequest($username) ) {
+              echo "<input type='submit'
+                           name=''
+                           class='profile-button warning'
+                           value='Request Sent'
+                    > <br>";
+            } else {
+              echo "<input type='submit'
+                           name='add-friend'
+                           class='profile-button success'
+                           value='Add Friend'
                     > <br>";
             }
 
