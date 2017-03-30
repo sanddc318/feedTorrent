@@ -73,7 +73,6 @@
         if ( (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) &&
               noMorePosts == "false" ) {
           $("#loading").show();
-          console.log("Hello");
 
           var ajaxReq = $.ajax({
             url: "includes/handlers/ajax-load-posts.php",

@@ -1,9 +1,11 @@
 /* Core styles */
-body {
+body, html {
   line-height: 17px;
   background-color: #e6eae8;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+ol, ul, li { list-style: none; }
 
 a {
   text-decoration: none;
@@ -13,6 +15,24 @@ a {
 a:hover {
   text-decoration: none;
   color: #337ab7;
+}
+
+.wrapper {
+  margin: 0px auto;
+  top: 50px;
+  position: relative;
+  padding: 0px 10px;
+  width: 75%;
+  min-width: 950px;
+}
+
+.column {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px #d3d3d3;
+  z-index: -1;
 }
 /* //////////////////////////////// */
 
@@ -74,24 +94,6 @@ nav a.nav-link:hover {
 
 
 /* User detail styles */
-.wrapper {
-  margin: 0px auto;
-  top: 50px;
-  position: relative;
-  padding: 0px 10px;
-  width: 75%;
-  min-width: 950px;
-}
-
-.column {
-  background-color: #fff;
-  padding: 10px;
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
-  box-shadow: 2px 2px 1px #d3d3d3;
-  z-index: -1;
-}
-
 .user-details {
   width: 330px;
   float: left;
@@ -111,17 +113,13 @@ nav a.nav-link:hover {
   position: absolute;
 }
 
-.user-details-leftcol-right .name > a {
-  font-size: 1.2em;
-}
+.user-details-leftcol-right .name > a { font-size: 1.2em; }
 /* //////////////////////////////// */
 
 
 
 /* News feed / new post styles */
-textarea:focus {
-  outline: 0;
-}
+textarea:focus { outline: 0; }
 
 .main-column {
   float: right;
@@ -204,7 +202,6 @@ textarea:focus {
   margin: 0;
   cursor: pointer;
 }
-
 .comment-like:focus { outline: 0; }
 
 .like-value {
