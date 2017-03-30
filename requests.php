@@ -48,8 +48,18 @@
   ?>
 
     <form action="requests.php" method="POST">
-      <input id="accept-button" type="submit" name="accept_request<?php echo $user_from; ?>" value="Accept" >
-      <input id="ignore-button" type="submit" name="ignore_request<?php echo $user_from; ?>" value="Ignore" >
+      <input class="success"
+             id="accept-button"
+             type="submit"
+             name="accept_request<?php echo $user_from; ?>"
+             value="Accept"
+      >
+      <input class="default"
+             id="ignore-button"
+             type="submit"
+             name="ignore_request<?php echo $user_from; ?>"
+             value="Ignore"
+      >
     </form>
 
   <?php

@@ -72,7 +72,7 @@
           if ( $row["user_to"] == "none" ) {
             $user_to = "";
           } else {
-            $user_to_obj = new User( $con, $row["user_to"] );
+            $user_to_obj = new User( $this->con, $row["user_to"] );
             $user_to_name = $user_to_obj->getFirstAndLastName();
             // Return link to user profile page and their first + last name as the link text
             $user_to = "to <a href='" . $row["user_to"] . "'>" . $user_to_name . "</a>";
@@ -201,11 +201,11 @@
                         <img src='$profile_pic' width='50'>
                       </div>
 
-                      <div class='posted_by' style='color: #acacac;'>
+                      <div class='posted-by' style='color: #acacac;'>
                         <a href='$added_by'>#$username</a>
                         $user_to &nbsp;&nbsp;&nbsp;&nbsp; $time_message
                       </div>
-                      <div id='post_body'>
+                      <div id='post-body'>
                         $body <br><br><br>
                       </div>
 

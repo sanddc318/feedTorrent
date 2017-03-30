@@ -265,3 +265,16 @@ textarea:focus { outline: 0; }
   color: #fff;
 }
 /* //////////////////////////////// */
+
+
+
+/* Friend request page */
+#accept-button, #ignore-button {
+  width: 20%;
+  height: 28px;
+  border-radius: 5px;
+  margin: 5px;
+  border: none;
+  color: #fff;
+}
+/* //////////////////////////////// */

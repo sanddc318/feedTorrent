@@ -28,6 +28,7 @@
   <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/swirlfeed.js"></script>
 </head>
 <body>
   <!-- Navigation bar -->
