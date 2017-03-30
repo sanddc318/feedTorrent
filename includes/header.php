@@ -24,10 +24,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/jquery.Jcrop.css">
   <link rel="stylesheet" href="assets/css/styles.css">
   <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/jcrop_bits.js"></script>
+  <script src="assets/js/jquery.Jcrop.js"></script>
   <script src="assets/js/bootbox.min.js"></script>
   <script src="assets/js/swirlfeed.js"></script>
 </head>
