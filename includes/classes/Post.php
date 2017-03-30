@@ -266,7 +266,228 @@
 
       } // End if block ( mysqli_num_rows($data_query) > 0 )
       echo $str;
-    }
+    } // End loadPostsFriends function
+
+
+
+
+
+    public function loadProfilePosts( $data, $limit ) {
+      // UNDERSTAND THIS ------------------------------------------
+      $page = $data["page"];
+      $profileUser = $data["profileUsername"];
+      $loggedInUser = $this->user_obj->getUsername();
+
+      if ( $page == 1 ) {
+        $start = 0;
+      } else {
+        $start = ( $page - 1 ) * $limit;
+      }
+      // END UNDERSTAND THIS ------------------------------------------
+
+
+      $str = "";
+      $data_query = mysqli_query( $this->con, "SELECT * FROM posts
+                                         WHERE deleted = 'no'
+                                         AND ( (added_by = '$profileUser'
+                                         AND user_to = 'none')
+                                         OR user_to = '$profileUser' )
+                                         ORDER BY id DESC" );
+
+      if ( mysqli_num_rows($data_query) > 0 ) {
+        $num_iterations = 0; // Number of results checked (not necessarily posted)
+        $count = 1;
+
+        while ( $row = mysqli_fetch_array($data_query) ) {
+          $id = $row["id"];
+          $body = $row["body"];
+          $added_by = $row["added_by"];
+          $date_time = $row["date_added"];
+
+
+            // UNDERSTAND THIS ------------------------------------------
+            if ( $num_iterations++ < $start )
+              continue;
+
+            // Once 10 posts have been loaded, break
+            if ( $count > $limit ) {
+              break;
+            } else {
+              $count++;
+            }
+
+
+            // Delete button
+            if ($loggedInUser == $added_by) {
+              $delete_button = "<button class='delete-button btn-danger' id='post$id'>
+                                  X
+                                </button>";
+            } else {
+              $delete_button = '';
+            }
+
+
+            // END UNDERSTAND THIS ------------------------------------------
+
+            $user_details_query = mysqli_query( $this->con, "SELECT username, profile_pic
+                                                            FROM users
+                                                            WHERE username = '$added_by'" );
+            $user_row = mysqli_fetch_array( $user_details_query );
+            $username = $user_row["username"];
+            $profile_pic = $user_row["profile_pic"];
+?>
+
+            <script>
+              function toggle<?php echo $id; ?>() {
+                var target = $(event.target);
+
+                if ( !target.is("a") ) {
+                  var element = document.getElementById("toggleComment<?php echo $id; ?>");
+
+                  if ( element.style.display == "block" ) {
+                    element.style.display = "none";
+                  } else {
+                    element.style.display = "block";
+                  }
+
+                }
+              }
+            </script>
+
+<?php
+            // Check how many comments there are
+            $comment_check = mysqli_query( $this->con, "SELECT * FROM comments
+                                                  WHERE post_id = '$id'" );
+            $comment_check_num = mysqli_num_rows( $comment_check );
+
+            // Get a timestamp
+            $date_time_now = date( "Y-m-d H:i:s" );
+            $start_date = new Datetime( $date_time ); // Time of post creation
+            $end_date = new Datetime( $date_time_now ); // Latest activity
+            $interval = $start_date->diff( $end_date );
+
+            if ( $interval->y >= 1 ) { // Years
+
+                  if ( $interval == 1 ) {
+                    $time_message = $interval->y . " year ago";
+                  } else {
+                    $time_message = $interval->y . " years ago";
+                  }
+
+            } else if ( $interval->m >= 1 ) { // If at least a month old
+
+                  if ( $interval->d == 0 ) {
+                    $days = " ago"; // If exactly a month, just add "ago" (e.g. "4 months ago")
+                  } else if ( $interval->d == 1 ) {
+                    // Otherwise...
+                    $days = $interval->d . " day ago"; // "1 day ago"
+                  } else {
+                    $days = $interval->d . " days ago"; // "(n) days ago"
+                  }
+
+                  // Now concatenate the month(s) and day(s)
+                  if ( $interval->m == 1 ) {
+                    $time_message = $interval->m . " month," . $days; // e.g. "1 month, 6 days ago"
+                  } else {
+                    $time_message = $interval->m . " months," . $days; // e.g. "8 months, 1 day ago"
+                  }
+
+            } else if ( $interval->d >= 1 ) {
+
+                  if ( $interval->d == 1 ) {
+                    $time_message = "Yesterday"; // If exactly one day, just say "yesterday"
+                  } else {
+                    $time_message = $interval->d . " days ago";
+                  }
+
+            } else if ( $interval->h >= 1 ) { // Hours
+
+                  if ( $interval->h == 1 ) {
+                    $time_message = $interval->h . " hour ago";
+                  } else {
+                    $time_message = $interval->h . " hours ago";
+                  }
+
+            } else if ( $interval->i >= 1 ) { // Minutes
+
+                  if ( $interval->i == 1 ) {
+                    $time_message = $interval->i . " minute ago";
+                  } else {
+                    $time_message = $interval->i . " minutes ago";
+                  }
+
+            } else { // Seconds
+
+                  if ( $interval->s < 30 ) {
+                    $time_message = "Just now";
+                  } else {
+                    $time_message = $interval->s . " seconds ago";
+                  }
+
+            } // End timestamp code
+            // Final output
+            $str .= "<div class='status-post' onClick='javascript:toggle$id()'>
+                      <div class='post-profile-pic'>
+                        <img src='$profile_pic' width='50'>
+                      </div>
+
+                      <div class='posted-by' style='color: #acacac;'>
+                        <a href='$added_by'>#$username</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp; $time_message
+                        $delete_button
+                      </div>
+                      <div id='post-body'>
+                        $body <br><br><br>
+                      </div>
+
+                      <div class='newsfeed-post-options'>
+                        Comments ($comment_check_num) &nbsp;&nbsp;&nbsp;
+                        <iframe src='like.php?post_id=$id' scrolling='no'></iframe>
+                      </div>
+                    </div>
+
+                    <div class='post-comment' id='toggleComment$id' style='display: none;'>
+                      <iframe id='comment-iframe'
+                              src='comment-frame.php?post_id=$id'
+                              frameborder='0'
+                      >
+                      </iframe>
+                    </div>
+                    <hr>";
+?>
+
+         <script>
+           $(document).ready(function() {
+             $('#post<?php echo $id; ?>').on('click', function(event) {
+               bootbox.confirm("Are you sure you wan to delete this post?", function(result) {
+                 $.post("includes/form-handlers/delete-post.php?post-id=<?php echo $id; ?>", {result: result})
+
+                 if (result) {
+                   location.reload();
+                 }
+               });
+             });
+           });
+         </script>
+
+<?php
+        } // End while loop
+
+        if ( $count > $limit ) {
+          $str .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'>
+                   <input type='hidden' class='noMorePosts' value='false'>";
+        } else {
+          $str .= "<input type='hidden' class='noMorePosts' value='true'>
+                   <p style='text-align: center;'>No more posts to show</p>";
+        }
+
+      } // End if block ( mysqli_num_rows($data_query) > 0 )
+      echo $str;
+    } // End loadPostsFriends function
+
+
+
+
 
   }
 ?>

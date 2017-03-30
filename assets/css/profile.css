@@ -62,7 +62,7 @@ a:hover {
   border-right: 10px solid #ccc;
   margin-right: 20px;
   min-height: 100%;
-  float: none;
+  float: left;
   display: inline-block;
   vertical-align: top;
 }
@@ -93,5 +93,12 @@ a:hover {
   margin: 7px 0 0 7px;
   border: none;
   color: #fff;
+}
+
+.profile-main-column {
+  min-width: 675px;
+  float: left;
+  width: 70%;
+  z-index: -1;
 }
 /* //////////////////////////////// */
