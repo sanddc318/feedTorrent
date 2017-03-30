@@ -98,9 +98,6 @@
     <!-- Feed -->
     <div class="main-column column">
       <?php echo $username; ?>
-
-      <!-- Button trigger modal -->
-
     </div>
 
     <!-- Modal -->

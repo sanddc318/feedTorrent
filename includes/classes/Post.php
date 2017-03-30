@@ -97,6 +97,18 @@
             } else {
               $count++;
             }
+
+
+            // Delete button
+            if ($loggedInUser == $added_by) {
+              $delete_button = "<button class='delete-button btn-danger' id='post$id'>
+                                  X
+                                </button>";
+            } else {
+              $delete_button = '';
+            }
+
+
             // END UNDERSTAND THIS ------------------------------------------
 
             $user_details_query = mysqli_query( $this->con, "SELECT username, profile_pic
@@ -204,6 +216,7 @@
                       <div class='posted-by' style='color: #acacac;'>
                         <a href='$added_by'>#$username</a>
                         $user_to &nbsp;&nbsp;&nbsp;&nbsp; $time_message
+                        $delete_button
                       </div>
                       <div id='post-body'>
                         $body <br><br><br>
@@ -224,6 +237,23 @@
                     </div>
                     <hr>";
           } // End if block user_logged_obj
+?>
+
+         <script>
+           $(document).ready(function() {
+             $('#post<?php echo $id; ?>').on('click', function(event) {
+               bootbox.confirm("Are you sure you wan to delete this post?", function(result) {
+                 $.post("includes/form-handlers/delete-post.php?post-id=<?php echo $id; ?>", {result: result})
+
+                 if (result) {
+                   location.reload();
+                 }
+               });
+             });
+           });
+         </script>
+
+<?php
         } // End while loop
 
         if ( $count > $limit ) {

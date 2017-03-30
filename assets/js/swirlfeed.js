@@ -10,7 +10,7 @@ $(document).ready(function() {
         location.reload();
       },
       error: function() {
-        alert("Faliure");
+        alert("Failure");
       }
     }); // End ajax
   });
