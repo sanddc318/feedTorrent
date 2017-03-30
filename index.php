@@ -25,7 +25,7 @@
         echo "<em>#" . $user["username"] . "</em> <br><br>";
         echo "Posts: " . $user["num_posts"] . "<br>";
         echo "Likes: " . $user["num_likes"] . "<br>";
-        echo "Friends: 0" . "<br>";
+        echo "Friends: " . $num_friends . "<br>";
       ?>
     </div>
   </div>

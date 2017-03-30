@@ -5,6 +5,7 @@
     $loggedInUser = $_SESSION["username"];
     $user_details_query = mysqli_query( $con, "SELECT * FROM users WHERE username = '$loggedInUser'" );
     $user = mysqli_fetch_array( $user_details_query );
+    $num_friends = ( substr_count($user["friends_array"], ",") ) - 1; // Make into a function?
   } else {
     header( "Location: register.php" );
   }
