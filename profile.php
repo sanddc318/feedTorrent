@@ -9,6 +9,20 @@
     $user_array = mysqli_fetch_array( $user_details_query );
     $num_friends = ( substr_count($user_array["friends_array"], ",") ) - 1; // Make into a function?
   }
+
+  if ( isset($_POST["remove-friend"]) ) {
+    $user = new User( $con, $loggedInUser );
+    $user->removeFriend( $username );
+  }
+
+  if ( isset($_POST["add-friend"]) ) {
+    $user = new User( $con, $loggedInUser );
+    $user->sendRequest( $username );
+  }
+
+  if ( isset($_POST["respond-request"]) ) {
+    header( "Location: requests.php" );
+  }
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +46,7 @@
         <p><?php echo "Friends: " . $num_friends; ?></p>
       </div>
 
-      <form action="<?php echo $username; ?>">
+      <form action="<?php echo $username; ?>" method="POST">
         <?php
           $profile_user_obj = new User( $con, $username );
 
@@ -54,13 +68,13 @@
             } else if ( $logged_in_user_obj->didReceiveRequest($username) ) {
               echo "<input type='submit'
                            name='respond-request'
-                           class='profile-button default'
+                           class='profile-button warning'
                            value='Respond'
                     > <br>";
             } else if ( $logged_in_user_obj->didSendRequest($username) ) {
               echo "<input type='submit'
                            name=''
-                           class='profile-button warning'
+                           class='profile-button default'
                            value='Request Sent'
                     > <br>";
             } else {
