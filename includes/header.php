@@ -1,5 +1,7 @@
 <?php
   require("config/config.php");
+  include("includes/classes/User.php");
+  include("includes/classes/Post.php");
 
   if ( isset($_SESSION["username"]) ) {
     $loggedInUser = $_SESSION["username"];
@@ -42,7 +44,7 @@
       <a href="#" class="nav-link"><i class="fa fa-envelope" aria-hidden="true"></i></a>
       <a href="#" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i></a>
       <a href="#" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i></a>
-      <a href="#" class="nav-link"><i class="fa fa-users" aria-hidden="true"></i></a>
+      <a href="requests.php" class="nav-link"><i class="fa fa-users" aria-hidden="true"></i></a>
       <a href="includes/handlers/logout.php" class="nav-link">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
       </a>

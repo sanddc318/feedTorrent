@@ -64,6 +64,14 @@
       return $row["profile_pic"];
     }
 
+    public function getFriendsArray() {
+      $username = $this->user["username"];
+      $query = mysqli_query( $this->con, "SELECT friends_array FROM users
+                                          WHERE username = '$username'" );
+      $row = mysqli_fetch_array( $query );
+      return $row["friends_array"];
+    }
+
 
 
     // Friend stuff

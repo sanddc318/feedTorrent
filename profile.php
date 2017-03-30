@@ -1,7 +1,5 @@
 <?php
   include("includes/header.php");
-  include("includes/classes/User.php");
-  include("includes/classes/Post.php");
 
   if ( isset($_GET["profile_username"]) ) {
     $username = $_GET["profile_username"];
