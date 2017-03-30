@@ -101,4 +101,9 @@ a:hover {
   width: 70%;
   z-index: -1;
 }
+
+.profile-info-bottom {
+  margin: 10px 0;
+  text-align: center;
+}
 /* //////////////////////////////// */

@@ -87,12 +87,22 @@
         ?>
       </form>
       <!-- Post button -->
-      <input class="primary"
+      <input class="primary profile-button"
              type="submit"
              data-toggle="modal"
              data-target="#post-form"
              value="Post Something"
       >
+
+      <?php
+        if ($loggedInUser != $username) {
+          echo '<div class="profile-info-bottom">';
+                  echo $logged_in_user_obj->getMutualFriends($username) . ' Mutual Friends';
+                echo '</div>';
+
+        }
+      ?>
+
     </div> <!-- /.profile-left -->
 
     <!-- Feed -->
