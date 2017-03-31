@@ -65,9 +65,12 @@
       <?php
         if ($user_to == "new") {
           echo "Select the friend you would like to message <br><br>";
-          echo "To: <input type='text' >";
-          echo "<div class='results'>
-                </div>";
+      ?>
+          To: <input type='text' onkeyup='getUsers(this.value, "<?php echo $loggedInUser; ?>")'
+                     name='q' placeholder='Search your friends' autocomplete='off' id='search-text-input'
+              >
+      <?php
+          echo "<div class='results'></div>";
         } else {
           echo "<textarea name='message-body' id='message-textarea' placeholder='Write your message...'></textarea>";
           echo "<input type='submit' name='post-message' class='info' id='message-submit' value='Send' >";

@@ -16,3 +16,12 @@ $(document).ready(function() {
   });
 
 });
+
+function getUsers(value, user) {
+  $.post("includes/handlers/ajax-friend-search.php", {
+    query: value,
+    loggedInUser: user
+  }, function(data) {
+    $(".results").html(data);
+  });
+}
