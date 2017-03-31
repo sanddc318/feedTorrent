@@ -101,8 +101,8 @@
 
             // Delete button
             if ($loggedInUser == $added_by) {
-              $delete_button = "<button class='delete-button btn-danger' id='post$id'>
-                                  X
+              $delete_button = "<button class='delete-button' id='post$id'>
+                                  <i class='fa fa-times' aria-hidden='true'></i>
                                 </button>";
             } else {
               $delete_button = '';

@@ -57,8 +57,8 @@
         $body = $row["body"];
 
         $div_top = ($user_to == $loggedInUser) ? "<div class='message' id='green'>"
-                                               : "<div class='message' id='green'>";
-        $data = $data . $div_top . $body . "</div> <br><br>";
+                                               : "<div class='message' id='blue'>";
+        $data = $data . $div_top . $body . "</div>";
       } // End while loop
       return $data;
     }

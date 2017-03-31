@@ -152,8 +152,6 @@ textarea:focus { outline: 0; }
   height: 60px;
   border: none;
   border-radius: 5px;
-  font-family: 'Merienda One', cursive;
-  text-shadow: #888 0.5px 0.5px 0px;
   position: absolute;
   outline: 0;
   margin: 0;
@@ -217,6 +215,8 @@ textarea:focus { outline: 0; }
 }
 
 .delete-button {
+  background-color: transparent;
+  color: red;
   height: 22px;
   width: 22px;
   padding: 0;
@@ -259,8 +259,6 @@ textarea:focus { outline: 0; }
   height: 45px;
   border: none;
   border-radius: 5px;
-  font-family: 'Merienda One', cursive;
-  text-shadow: #888 0.5px 0.5px 0px;
   position: absolute;
   outline: 0;
   margin: 0;
@@ -287,5 +285,58 @@ textarea:focus { outline: 0; }
   margin: 5px;
   border: none;
   color: #fff;
+}
+/* //////////////////////////////// */
+
+
+
+/* Message page */
+#message-textarea {
+  width: 80%;
+  margin-right: 8px;
+  padding: 5px;
+  border: 1px solid #d3d3d3;
+}
+
+#message-submit {
+  height: 45px;
+  width: 120px;
+  margin: 0;
+  position: absolute;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.message {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fff;
+  display: inline-block;
+  clear: both;
+}
+
+.message#blue {
+  background-color: #2980b9;
+  border-color: #2980b9;
+  float: right;
+  margin-bottom: 12px;
+}
+
+.message#green {
+  background-color: #27ae60;
+  border-color: #27ae60;
+  float: left;
+  margin-bottom: 12px;
+}
+
+.loaded-messages {
+  height: 65%;
+  min-height: 300px;
+  max-height: 400px;
+  overflow: scroll;
+  margin-bottom: 10px;
+  position: relative;
 }
 /* //////////////////////////////// */
