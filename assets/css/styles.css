@@ -132,7 +132,7 @@ textarea:focus { outline: 0; }
   float: right;
   width: 65%;
   z-index: -1;
-  min-height: 60px;
+  min-height: 170px;
 }
 
 .post-form { width: 100%; }
@@ -357,4 +357,33 @@ textarea:focus { outline: 0; }
 }
 
 #gray { color: #8c8c8c; }
+
+.result-display {
+  padding: 5px 5px 0 5px;
+  height: 60px;
+  border-bottom: 1px solid #d3d3d3;
+}
+.result-display:hover {
+  background-color: #ebebeb;
+  text-decoration: none;
+}
+
+.result-display a { float: none; }
+
+.live-search-profile-pic img {
+  height: 50px;
+  border-radius: 25px;
+  margin: 1px 12px 0 2px;
+  float: left;
+}
+
+.live-search-text {
+  background-color: transparent;
+  color: #333;
+}
+
+.live-search-text p {
+  margin-left: 10px;
+  font-size: 12px;
+}
 /* //////////////////////////////// */

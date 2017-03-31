@@ -24,4 +24,4 @@ function getUsers(value, user) {
   }, function(data) {
     $(".results").html(data);
   });
-}
+};

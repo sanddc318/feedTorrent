@@ -9,7 +9,7 @@
 
   if (strpos($query, "_") !== false) { // Search by username
     $usersReturned = mysqli_query($con, "SELECT * FROM users
-                                        WHERE username LIKE '$query%'
+                                        WHERE username LIKE '%$query%'
                                         AND user_closed = 'no'
                                         LIMIT 8");
   } else if (count($names) == 2) { // Search by first and/or lastname
@@ -31,19 +31,19 @@
       if ($row["username"] != $loggedInUser) {
         $mutualFriends = $user->getMutualFriends($row["username"]) . " friends in common";
       } else {
-        $mutualFriends = "";
+        $mutualFriends = "This is you";
       }
 
       if ($user->isFriend($row["username"])) {
         echo "<div class='result-display'>
-                <a href='messages.php?u='" . $row["username"] . "'style='color: #000;'>
+                <a href='messages.php?u=" . $row["username"] . "'style='color: #000;'>
                   <div class='live-search-profile-pic'>
                     <img src='" . $row["profile_pic"] . "'>
                   </div>
 
                   <div class='live-search-text'>
                     " . $row["first_name"] . " " . $row["last_name"] . "
-                    <p>" . $row["username"] . "</p>
+                    <p style='margin: 0;'>" . $row["username"] . "</p>
                     <p id='gray'>" . $mutualFriends . "</p>
                   </div>
                 </a>
