@@ -339,4 +339,22 @@ textarea:focus { outline: 0; }
   margin-bottom: 10px;
   position: relative;
 }
+
+.loaded-conversations {
+  height: 216px;
+  overflow: scroll;
+}
+
+.user-found-messages {
+  border-bottom: 1px solid #d3d3d3;
+  padding: 8px 8px 10px 8px;
+}
+.user-found-messages:hover { background-color: #eee; }
+
+.user-found-messages img {
+  height: 35px;
+  float: left;
+}
+
+#gray { color: #8c8c8c; }
 /* //////////////////////////////// */
