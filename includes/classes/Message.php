@@ -22,13 +22,21 @@
       }
 
       $row = mysqli_fetch_array($query);
-      $user_to = $row["user-to"];
-      $user_from = $row["user-from"];
+      $user_to = $row["user_to"];
+      $user_from = $row["user_from"];
 
       if ($user_to != $loggedInUser) {
         return $user_to;
       } else {
         return $user_from;
+      }
+    }
+
+    public function sendMessage($user_to, $body, $date) {
+      if ($body != "") {
+        $loggedInUser = $this->user_obj->getUsername();
+        $query = mysqli_query($this->con, "INSERT INTO messages
+                                           VALUES ('', '$user_to', '$loggedInUser', '$body', '$date', 'no', 'no', 'no')");
       }
     }
 

@@ -16,6 +16,16 @@
 
   if ($user_to != "new")
     $user_to_obj = new User($con, $user_to);
+
+  if (isset($_POST["post-message"])) {
+
+    if (isset($_POST["message-body"])) {
+      $body = mysqli_real_escape_string($con, $_POST["message-body"]);
+      $date = date("Y-m-d H:i:s");
+      $message_obj->sendMessage($user_to, $body, $date);
+    }
+
+  }
 ?>
 
 <div class="user-details column">
@@ -53,8 +63,7 @@
           echo "<div class='results'>
                 </div>";
         } else {
-          echo "<textarea name='message-body' id='message-textarea' placeholder='Write your message...'>
-                </textarea>";
+          echo "<textarea name='message-body' id='message-textarea' placeholder='Write your message...'></textarea>";
           echo "<input type='submit' name='post-message' class='info' id='message-submit' value='Send' >";
         }
       ?>
