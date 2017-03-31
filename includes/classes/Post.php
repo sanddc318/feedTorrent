@@ -73,7 +73,7 @@
             $user_to = "";
           } else {
             $user_to_obj = new User( $this->con, $row["user_to"] );
-            $user_to_name = $user_to_obj->getFirstAndLastName();
+            $user_to_name = $user_to_obj->getUsername();
             // Return link to user profile page and their first + last name as the link text
             $user_to = "to <a href='" . $row["user_to"] . "'>" . $user_to_name . "</a>";
           }
