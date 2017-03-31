@@ -50,11 +50,17 @@
 
 <div class="main-column column" id="main-column">
   <?php
-    if ($user_to != "new")
-      echo "<h4>You and <a href='$user_to'>" . $user_to_obj->getFirstAndLastName() . "</a></h4> <hr><br>"
+    if ($user_to != "new") {
+      echo "<h4>You and <a href='$user_to'>" . $user_to_obj->getFirstAndLastName() . "</a></h4> <hr><br>";
+      echo "<div class='loaded-messages'>";
+        echo $message_obj->getMessages($user_to);
+      echo "</div>";
+    } else {
+      echo "<h4>New Message</h4>";
+    }
   ?>
 
-  <div class="loaded-messages">
+  <div class="message-post">
     <form action="" method="POST">
       <?php
         if ($user_to == "new") {
