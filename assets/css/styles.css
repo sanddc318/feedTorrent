@@ -194,6 +194,7 @@ textarea:focus { outline: 0; }
   border: 0;
   height: 17px;
   width: 128px;
+  background-color: transparent;
 }
 
 .comment-like {

@@ -36,11 +36,7 @@
     <hr>
 
     <div class="posts-area"></div>
-    <img id="loading"
-         src="assets/images/icons/spinner.gif"
-         alt="Loading icon"
-         style="width: 100%;"
-    >
+    <img id="loading" src="assets/images/icons/spinner.gif" style="width: 100%;">
   </div>
 
   <!-- Ajax pagination and auto reload -->

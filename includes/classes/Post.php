@@ -41,7 +41,6 @@
     }
 
     public function loadPostsFriends( $data, $limit ) {
-      // UNDERSTAND THIS ------------------------------------------
       $page = $data["page"];
       $loggedInUser = $this->user_obj->getUsername();
 
@@ -50,7 +49,6 @@
       } else {
         $start = ( $page - 1 ) * $limit;
       }
-      // END UNDERSTAND THIS ------------------------------------------
 
 
       $str = "";
@@ -87,7 +85,6 @@
           $user_logged_obj = new User( $this->con, $loggedInUser );
           if ( $user_logged_obj->isFriend($added_by) ) {
 
-            // UNDERSTAND THIS ------------------------------------------
             if ( $num_iterations++ < $start )
               continue;
 
@@ -109,7 +106,6 @@
             }
 
 
-            // END UNDERSTAND THIS ------------------------------------------
 
             $user_details_query = mysqli_query( $this->con, "SELECT username, profile_pic
                                                             FROM users
@@ -273,7 +269,6 @@
 
 
     public function loadProfilePosts( $data, $limit ) {
-      // UNDERSTAND THIS ------------------------------------------
       $page = $data["page"];
       $profileUser = $data["profileUsername"];
       $loggedInUser = $this->user_obj->getUsername();
@@ -283,7 +278,6 @@
       } else {
         $start = ( $page - 1 ) * $limit;
       }
-      // END UNDERSTAND THIS ------------------------------------------
 
 
       $str = "";
@@ -305,7 +299,6 @@
           $date_time = $row["date_added"];
 
 
-            // UNDERSTAND THIS ------------------------------------------
             if ( $num_iterations++ < $start )
               continue;
 
@@ -320,14 +313,13 @@
             // Delete button
             if ($loggedInUser == $added_by) {
               $delete_button = "<button class='delete-button btn-danger' id='post$id'>
-                                  X
+                                  <i class='fa fa-times' aria-hidden='true'></i>
                                 </button>";
             } else {
               $delete_button = '';
             }
 
 
-            // END UNDERSTAND THIS ------------------------------------------
 
             $user_details_query = mysqli_query( $this->con, "SELECT username, profile_pic
                                                             FROM users

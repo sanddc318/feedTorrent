@@ -105,15 +105,60 @@
 
     </div> <!-- /.profile-left -->
 
-    <!-- Feed -->
+    <!-- Feed / About / Messages -->
     <div class="profile-main-column column">
-      <div class="posts-area"></div>
-      <img id="loading"
-          src="assets/images/icons/spinner.gif"
-          alt="Loading icon"
-          style="width: 100%;"
-      >
-    </div>
+
+      <ul class="nav nav-tabs" role="tablist" id="profileTabs">
+        <li role="presentation" class="active">
+          <a href="#newsfeed-div" aria-controls="newsfeed-div" role="tab" data-toggle="tab">Feed</a>
+        </li>
+        <li role="presentation">
+          <a href="#about-div" aria-controls="about-div" role="tab" data-toggle="tab">About</a>
+        </li>
+        <li role="presentation">
+          <a href="#messages-div" aria-controls="messages-div" role="tab" data-toggle="tab">Messages</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" style="margin-top: 25px;">
+        <!-- Newsfeed -->
+        <div role="tabpanel" class="tab-pane fade in active" id="newsfeed-div">
+          <div class="posts-area"></div>
+          <img id="loading" src="assets/images/icons/spinner.gif" style="width: 100%;">
+        </div>
+
+
+        <!-- About -->
+        <div role="tabpanel" class="tab-pane fade" id="about-div">
+
+        </div> <!-- /#about-div -->
+
+
+        <!-- Messages -->
+        <div role="tabpanel" class="tab-pane fade" id="messages-div">
+          <?php
+            $message_obj = new Message($con, $loggedInUser);
+
+            echo "<h4>You and <a href='" . $username . "'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4> <hr><br>";
+            echo "<div class='loaded-messages' id='scroll-messages'>";
+              echo $message_obj->getMessages($username);
+            echo "</div>";
+          ?>
+
+          <div class="message-post">
+            <form action="" method="POST">
+              <textarea name='message-body' id='message-textarea' placeholder='Write your message...'></textarea>
+              <input type='submit' name='post-message' class='info' id='message-submit' value='Send'>
+            </form>
+          </div>
+
+          <script>
+            var div = document.getElementById("scroll-messages");
+            div.scrollTop = div.scrollHeight;
+          </script>
+        </div> <!-- /#messages-div -->
+      </div> <!-- /.tab-content -->
+    </div> <!-- /.profile-main-column  -->
 
     <!-- Modal -->
     <div class="modal fade" id="post-form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel">
