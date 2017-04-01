@@ -1,5 +1,6 @@
 <?php
   include("includes/header.php");
+  $message_obj = new Message($con, $loggedInUser);
 
   if ( isset($_GET["profile_username"]) ) {
     $username = $_GET["profile_username"];
@@ -20,6 +21,22 @@
 
   if ( isset($_POST["respond-request"]) ) {
     header( "Location: requests.php" );
+  }
+
+  if (isset($_POST["post-message"])) {
+    if (isset($_POST["message-body"])) {
+      $body = mysqli_real_escape_string($con, $_POST["message-body"]);
+      $date = date("Y-m-d H:i:s");
+      $message_obj->sendMessage($username, $body, $date);
+    }
+
+    $link = '#profileTabs a[href="#messages-div"]';
+    echo "<script>
+            $(function() {
+              $('" . $link . "').tab('show');
+            })
+          </script>";
+
   }
 ?>
 
@@ -137,8 +154,6 @@
         <!-- Messages -->
         <div role="tabpanel" class="tab-pane fade" id="messages-div">
           <?php
-            $message_obj = new Message($con, $loggedInUser);
-
             echo "<h4>You and <a href='" . $username . "'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4> <hr><br>";
             echo "<div class='loaded-messages' id='scroll-messages'>";
               echo $message_obj->getMessages($username);
