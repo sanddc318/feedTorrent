@@ -67,4 +67,46 @@
 
   </div>
 
+
+
+  <script>
+    var loggedInUser = "<?php echo $loggedInUser; ?>";
+
+    $(document).ready(function() {
+      $(".dropdown-data-window").scroll(function() {
+        var inner_height = $(".dropdown-data-window").innerHeight();
+        var scroll_top = $(".dropdown-data-window").scrollTop();
+        var page = $(".dropdown-data-window").find(".nextPageDropdownData").val();
+        var noMoreData = $(".dropdown-data-window").find(".noMoreDropdownData").val();
+
+        if ((scroll_top + inner_height >= $(".dropdown-data-window")[0].scrollHeight) && noMoreData == "false" ) {
+          var pageName; // Holds name of page to send ajax request to
+          var type = $("#dropdown-data-type").val();
+
+          if (type == "notification") {
+            pageName = "ajax-load-notifications.php";
+          } else if (type = "message") {
+            pageName = "ajax-load-messages.php";
+          }
+
+          var ajaxReq = $.ajax({
+            url: "includes/handlers/" + pageName,
+            type: "POST",
+            data: "page=" + page + "&loggedInUser=" + loggedInUser,
+            cache: false,
+            success: function(response) {
+              $(".dropdown-data-window").find(".nextPageDropdownData").remove(); // Removes current .nextPage
+              $(".dropdown-data-window").find(".noMoreDropdownData").remove(); // Removes current .noMorePosts
+              $(".dropdown-data-window").append(response);
+            }
+          });
+        } // End if block
+        return false;
+
+      }); // End window.scroll func
+    });
+  </script>
+
+
+
   <div class="wrapper">

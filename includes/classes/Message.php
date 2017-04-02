@@ -234,7 +234,7 @@
                                                      ORDER BY id DESC");
 
         $row = mysqli_fetch_array($is_unread_query);
-        $style = ($row["opened"] == 'no') ? "background-color: #ddedff" : "";
+        $style = ($row["opened"] == "no") ? "background-color: #ddedff" : "";
 
         $user_found_obj = new User($this->con, $username);
         // Get latest message between the two users
