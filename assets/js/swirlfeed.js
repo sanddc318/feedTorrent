@@ -25,3 +25,32 @@ function getUsers(value, user) {
     $(".results").html(data);
   });
 };
+
+function getDropdownData(user, type) {
+  if ($(".dropdown-data-window").css("height") == "0px") {
+    var pageName;
+
+    if (type == "notification") {
+
+    } else if (type == "message") {
+      pageName = "ajax-load-messages.php";
+      $("span").remove("#unread-message");
+    }
+
+    var ajaxreq = $.ajax({
+      url: "includes/handlers/" + pageName,
+      type: "POST",
+      data: "page=1&user=" + user,
+      cache: false,
+      success: function() {
+        $(".dropdown-data-window").html(response);
+        $(".dropdown-data-window").css({"padding": "0px", "height": "200px"});
+        $("#dropdown-data-type").valueOf(type);
+      }
+    });
+
+  } else {
+    $(".dropdown-data-window").html("");
+    $(".dropdown-data-window").css({"padding": "0px", "height": "0px"});
+  }
+};
