@@ -233,7 +233,7 @@
                                                      AND user_from = '$username'
                                                      ORDER BY id DESC");
 
-        $row - mysqli_fetch_array($is_unread_query);
+        $row = mysqli_fetch_array($is_unread_query);
         $style = ($row["opened"] == 'no') ? "background-color: #ddedff" : "";
 
         $user_found_obj = new User($this->con, $username);
@@ -246,7 +246,7 @@
         $split = $split[0] . $dots;
 
         $return_str .= "<a href='messages.php?u=$username'>
-                          <div class='user-found-messages'>
+                          <div class='user-found-messages' style='" . $style . "'>
                             <img src='" . $user_found_obj->getProfilePic() . "'
                                  style='border-radius: 5px; margin-right: 5px;'
                             >" . $user_found_obj->getFirstAndLastName() . "
@@ -255,6 +255,16 @@
                           </div>
                         </a>";
       } // End foreach loop
+
+      // If posts were loaded
+      if ($count > $limit) {
+        $return_str .= "<input type='hidden' class='nextPageDropdownData' value='" . ($page + 1) . "'>
+                        <input type='hidden' class='noMoreDropdownData' value='false'>";
+      } else {
+        $return_str .= "<input type='hidden' class='noMoreDropdownData' value='true'>
+                        <p style='text-align: center;'>No more messages to load</p>";
+      }
+
       return $return_str;
     }
 

@@ -42,7 +42,7 @@ function getDropdownData(user, type) {
       type: "POST",
       data: "page=1&loggedInUser=" + user,
       cache: false,
-      success: function() {
+      success: function(response) {
         $(".dropdown-data-window").html(response);
         $(".dropdown-data-window").css({"padding": "0px", "height": "200px"});
         $("#dropdown-data-type").valueOf(type);
