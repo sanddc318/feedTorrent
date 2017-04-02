@@ -186,5 +186,77 @@
       return $return_str;
     }
 
+    public function getConvosDropdown($data, $limit) {
+      $page = $data["page"];
+      $loggedInUser = $this->user_obj->getUsername();
+      $return_str = "";
+      $convos = array();
+
+      if ($page == 1) {
+        $start = 0;
+      } else {
+        $start = ($page - 1) * $limit;
+      }
+
+      $set_viewed_query = mysqli_query($this->con, "UPDATE messages
+                                                    SET viewed = 'yes'
+                                                    WHERE user_to = '$loggedInUser'");
+
+      $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages
+                                         WHERE user_to = '$loggedInUser'
+                                         OR user_from = '$loggedInUser'");
+
+      while ($row = mysqli_fetch_array($query)) {
+        $user_to_push = ($row["user_to"] != $loggedInUser) ? $row["user_to"] : $row["user_from"];
+
+        if (!in_array($user_to_push, $convos)) {
+          array_push($convos, $user_to_push);
+        }
+      } // End while
+
+      $num_iterations = 0; // Number of messages checked
+      $count = 1; // Number of messages posted
+
+      foreach ($convos as $username) {
+
+        if ($num_iterations++ < $start)
+          continue;
+
+        if ($count > $limit) {
+          break;
+        } else {
+          $count++;
+        }
+
+        $is_unread_query = mysqli_query($this->con, "SELECT opened FROM messages
+                                                     WHERE user_to = '$loggedInUser'
+                                                     AND user_from = '$username'
+                                                     ORDER BY id DESC");
+
+        $row - mysqli_fetch_array($is_unread_query);
+        $style = ($row["opened"] == 'no') ? "background-color: #ddedff" : "";
+
+        $user_found_obj = new User($this->con, $username);
+        // Get latest message between the two users
+        $latest_message_details = $this->getLatestMessage($loggedInUser, $username);
+
+        // Just show three dots if message is longers than 12 characters
+        $dots = (strlen($latest_message_details[1]) >= 12) ? "..." : "";
+        $split = str_split($latest_message_details[1], 12);
+        $split = $split[0] . $dots;
+
+        $return_str .= "<a href='messages.php?u=$username'>
+                          <div class='user-found-messages'>
+                            <img src='" . $user_found_obj->getProfilePic() . "'
+                                 style='border-radius: 5px; margin-right: 5px;'
+                            >" . $user_found_obj->getFirstAndLastName() . "
+                            <span class='timestamp-smaller' id='gray'>" . $latest_message_details[2] . "</span>
+                            <p id='gray' style='margin: 0;'>" . $latest_message_details[0] . $split . "</p>
+                          </div>
+                        </a>";
+      } // End foreach loop
+      return $return_str;
+    }
+
   }
 ?>
