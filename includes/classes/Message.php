@@ -46,7 +46,7 @@
       $query = mysqli_query($this->con, "UPDATE messages
                                          SET opened = 'yes'
                                          WHERE user_to = '$loggedInUser'
-                                         AND user_from = '$otherUser')");
+                                         AND user_from = '$otherUser'");
 
       $get_messages_query = mysqli_query($this->con, "SELECT * FROM messages
                                                       WHERE (user_to = '$loggedInUser' AND user_from = '$otherUser') OR (user_from = '$loggedInUser' AND user_to = '$otherUser')");

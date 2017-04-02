@@ -45,7 +45,7 @@ function getDropdownData(user, type) {
       success: function(response) {
         $(".dropdown-data-window").html(response);
         $(".dropdown-data-window").css({"padding": "0px", "height": "200px", "border": "1px solid #dadada"});
-        $("#dropdown-data-type").valueOf(type);
+        $("#dropdown-data-type").val(type);
       }
     });
 
