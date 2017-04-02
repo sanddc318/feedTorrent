@@ -44,13 +44,13 @@ function getDropdownData(user, type) {
       cache: false,
       success: function(response) {
         $(".dropdown-data-window").html(response);
-        $(".dropdown-data-window").css({"padding": "0px", "height": "200px"});
+        $(".dropdown-data-window").css({"padding": "0px", "height": "200px", "border": "1px solid #dadada"});
         $("#dropdown-data-type").valueOf(type);
       }
     });
 
   } else {
     $(".dropdown-data-window").html("");
-    $(".dropdown-data-window").css({"padding": "0px", "height": "0px"});
+    $(".dropdown-data-window").css({"padding": "0px", "height": "0px", "border": "none"});
   }
 };

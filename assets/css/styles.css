@@ -389,3 +389,18 @@ textarea:focus { outline: 0; }
   font-size: 12px;
 }
 /* //////////////////////////////// */
+
+
+
+/* Notifications dropdown */
+.dropdown-data-window {
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  border-top: none;
+  width: 300px;
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  overflow: scroll;
+}
+/* //////////////////////////////// */

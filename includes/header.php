@@ -61,7 +61,7 @@
       </a>
     </nav>
 
-    <div class="dropdown-data-window">
+    <div class="dropdown-data-window" style="height: 0px; border: none;">
       <input type="hidden" id="dropdown-data-type" value="">
     </div>
 
