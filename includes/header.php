@@ -43,6 +43,13 @@
     </div>
 
     <nav>
+
+      <?php
+        // Unread messages
+        $messages = new Message($con, $loggedInUser);
+        $num_messages = $messages->getUnreadNumber();
+      ?>
+
       <a href="<?php echo $loggedInUser; ?>" class="user">
         <?php echo $user["first_name"]; ?>
       </a>
@@ -52,6 +59,10 @@
          class="nav-link"
       >
         <i class="fa fa-envelope" aria-hidden="true"></i>
+        <?php
+          if ($num_messages > 0)
+            echo '<span class="notification-badge" id="unread-message">' . $num_messages . '</span>';
+        ?>
       </a>
       <a href="#" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i></a>
       <a href="#" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i></a>
