@@ -46,6 +46,7 @@
 
     public function getSinglePost($post_id) {
       $loggedInUser = $this->user_obj->getUsername();
+      $opened_query = mysqli_query($this->con, "UPDATE notifications SET opened = 'yes' WHERE user_to = '$loggedInUser' AND link LIKE '%=$post_id'");
 
       $str = "";
       $data_query = mysqli_query( $this->con, "SELECT * FROM posts
@@ -53,7 +54,6 @@
                                          AND id = '$post_id'" );
 
       if ( mysqli_num_rows($data_query) > 0 ) {
-
         $row = mysqli_fetch_array($data_query);
           $id = $row["id"];
           $body = $row["body"];

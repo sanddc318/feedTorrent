@@ -53,6 +53,10 @@
         // Unread notifications
         $notifications = new Notification($con, $loggedInUser);
         $num_notifications = $notifications->getUnreadNumber();
+
+        // Friend requests
+        $user_obj = new User($con, $loggedInUser);
+        $num_requests = $user_obj->getNumberOfFriendRequests();
       ?>
 
       <!-- Logged in user -->
@@ -86,7 +90,13 @@
         ?>
       </a>
       <!-- Friend requests -->
-      <a href="requests.php" class="nav-link"><i class="fa fa-users" aria-hidden="true"></i></a>
+      <a href="requests.php" class="nav-link">
+        <i class="fa fa-users" aria-hidden="true"></i>
+        <?php
+          if ($num_requests > 0)
+            echo '<span class="notification-badge" id="unread-requests">' . $num_requests . '</span>';
+        ?>
+      </a>
       <!-- Logout -->
       <a href="includes/handlers/logout.php" class="nav-link">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
