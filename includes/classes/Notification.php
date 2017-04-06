@@ -87,9 +87,9 @@
         }
 
         $user_from = $row["user_from"];
-        $query = mysqli_query($this->con, "SELECT * FROM users
+        $user_data_query = mysqli_query($this->con, "SELECT * FROM users
                                            WHERE username = '$user_from'");
-        $user_data = mysqli_fetch_array($query);
+        $user_data = mysqli_fetch_array($user_data_query);
 
         // Get a timestamp
         $date_time_now = date( "Y-m-d H:i:s" );
