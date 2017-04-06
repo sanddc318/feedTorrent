@@ -67,6 +67,10 @@
                                            VALUES ('', '$loggedInUser', '$post_id')" );
 
       // Insert notification
+      if ($user_liked != $loggedInUser) {
+        $notification = new Notification($this->con, $loggedInUser);
+        $notification->insertNotification($post_id, $user_to, "post-like");
+      }
     }
 
     // Unlike button

@@ -30,6 +30,10 @@
         $returned_id = mysqli_insert_id( $this->con );
 
         // 2. Insert notification for receiving party
+        if ($user_to != "none") {
+          $notification = new Notification($this->con, $loggedInUser);
+          $notification->insertNotification($returned_id, $user_to, "profile-post");
+        }
 
         // 3. Update post count for posting user
         $num_posts = $this->user_obj->getNumPosts();

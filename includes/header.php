@@ -49,12 +49,21 @@
         // Unread messages
         $messages = new Message($con, $loggedInUser);
         $num_messages = $messages->getUnreadNumber();
+
+        // Unread notifications
+        $notifications = new Notification($con, $loggedInUser);
+        $num_notifications = $notifications->getUnreadNumber();
       ?>
 
+      <!-- Logged in user -->
       <a href="<?php echo $loggedInUser; ?>" class="user">
         <?php echo $user["first_name"]; ?>
       </a>
+      <!-- Home -->
       <a href="index.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i></a>
+      <!-- Settings -->
+      <a href="#" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i></a>
+      <!-- Messages -->
       <a href="javascript:void(0)"
          onclick="getDropdownData('<?php echo $loggedInUser; ?>', 'message')"
          class="nav-link"
@@ -65,9 +74,20 @@
             echo '<span class="notification-badge" id="unread-message">' . $num_messages . '</span>';
         ?>
       </a>
-      <a href="#" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i></a>
-      <a href="#" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i></a>
+      <!-- Notifications -->
+      <a href="javascript:void(0)"
+         onclick="getDropdownData('<?php echo $loggedInUser; ?>', 'notification')"
+         class="nav-link"
+      >
+        <i class="fa fa-bell" aria-hidden="true"></i>
+        <?php
+          if ($num_notifications > 0)
+            echo '<span class="notification-badge" id="unread-notification">' . $num_notifications . '</span>';
+        ?>
+      </a>
+      <!-- Friend requests -->
       <a href="requests.php" class="nav-link"><i class="fa fa-users" aria-hidden="true"></i></a>
+      <!-- Logout -->
       <a href="includes/handlers/logout.php" class="nav-link">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
       </a>

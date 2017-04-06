@@ -31,6 +31,8 @@ function getDropdownData(user, type) {
     var pageName;
 
     if (type == "notification") {
+      pageName = "ajax-load-notifications.php";
+      $("span").remove("#unread-notification");
 
     } else if (type == "message") {
       pageName = "ajax-load-messages.php";
