@@ -31,7 +31,7 @@
 
         // 2. Insert notification for receiving party
         if ($user_to != "none") {
-          $notification = new Notification($this->con, $loggedInUser);
+          $notification = new Notification($this->con, $added_by);
           $notification->insertNotification($returned_id, $user_to, "profile-post");
         }
 

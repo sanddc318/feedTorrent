@@ -2,10 +2,12 @@
   require("config/config.php");
   include("includes/classes/User.php");
   include("includes/classes/Post.php");
+  include("includes/classes/Notification.php");
 
   if ( isset($_SESSION["username"]) ) {
     $loggedInUser = $_SESSION["username"];
-    $user_details_query = mysqli_query( $con, "SELECT * FROM users WHERE username = '$loggedInUser'" );
+    $user_details_query = mysqli_query( $con, "SELECT * FROM users
+                                               WHERE username = '$loggedInUser'" );
     $user = mysqli_fetch_array( $user_details_query );
   } else {
     header( "Location: register.php" );
@@ -68,8 +70,8 @@
 
       // Insert notification
       if ($user_liked != $loggedInUser) {
-        $notification = new Notification($this->con, $loggedInUser);
-        $notification->insertNotification($post_id, $user_to, "post-like");
+        $notification = new Notification($con, $loggedInUser);
+        $notification->insertNotification($post_id, $user_liked, "post-like");
       }
     }
 
