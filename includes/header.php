@@ -3,6 +3,7 @@
   include("includes/classes/User.php");
   include("includes/classes/Post.php");
   include("includes/classes/Message.php");
+  include("includes/classes/Notification.php");
 
   if ( isset($_SESSION["username"]) ) {
     $loggedInUser = $_SESSION["username"];
@@ -30,8 +31,8 @@
   <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <script src="assets/js/bootstrap.js"></script>
-  <script src="assets/js/jcrop_bits.js"></script>
-  <script src="assets/js/jquery.Jcrop.js"></script>
+  <script src="assets/js/jcrop-bits.js"></script>
+  <script src="assets/js/jquery-jcrop.js"></script>
   <script src="assets/js/bootbox.min.js"></script>
   <script src="assets/js/swirlfeed.js"></script>
 </head>
