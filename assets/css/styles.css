@@ -362,7 +362,7 @@ textarea:focus { outline: 0; }
 
 .result-display {
   padding: 5px 5px 0 5px;
-  height: 60px;
+  height: auto;
   border-bottom: 1px solid #d3d3d3;
 }
 .result-display:hover {
@@ -371,6 +371,8 @@ textarea:focus { outline: 0; }
 }
 
 .result-display a { float: none; }
+
+.result-display-notification { padding: 7px; }
 
 .live-search-profile-pic img {
   height: 50px;
@@ -417,5 +419,17 @@ textarea:focus { outline: 0; }
   position: absolute;
   right: 5px;
   top: -5px;
+}
+
+.notifications-profile-pic img {
+  height: 35px;
+  border-radius: 5px;
+  margin: 1px 12px 0px 2px;
+  float: left;
+}
+
+.timestamp-smaller {
+  font-size: 85%;
+  margin: 0;
 }
 /* //////////////////////////////// */

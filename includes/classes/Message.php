@@ -204,7 +204,8 @@
 
       $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages
                                          WHERE user_to = '$loggedInUser'
-                                         OR user_from = '$loggedInUser'");
+                                         OR user_from = '$loggedInUser'
+                                         ORDER BY id DESC");
 
       while ($row = mysqli_fetch_array($query)) {
         $user_to_push = ($row["user_to"] != $loggedInUser) ? $row["user_to"] : $row["user_from"];
