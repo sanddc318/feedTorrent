@@ -43,6 +43,25 @@
       <a href="index.php">Swirlfeed!</a>
     </div>
 
+    <div class="search">
+      <form action="search.php" method="GET" name="search_form">
+        <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $loggedInUser; ?>')"
+               name="q" placeholder="Search..." autocomplete="off" id="search-text-input"
+        >
+        <div class="button-holder">
+          <img src="assets/images/icons/search-icon.png">
+        </div>
+      </form>
+
+      <div class="search-results">
+
+      </div>
+
+      <div class="search-results-footer-empty">
+
+      </div>
+    </div> <!-- /.search -->
+
     <nav>
 
       <?php

@@ -1,5 +1,18 @@
 $(document).ready(function() {
-  // Button for profile post
+
+  // Expands live search bar
+  $("#search-text-input").focus(function() {
+    if (window.matchMedia("(min-width: 800px)").matches) {
+      $(this).animate({width: "250px"}, 500);
+    }
+  });
+
+  // Submit live search query
+  $(".button-holder").on("click", function() {
+    document.search_form.submit();
+  });
+
+  // Button for profile posting
   $("#submit-profile-post").click(function() {
     $.ajax({
       type: "POST",
