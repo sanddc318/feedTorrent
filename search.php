@@ -95,13 +95,32 @@
               $button = "<input type='submit' name='" . $row['username'] . "'
                                 class='warning profile-button' value='Respond To Request'>";
             } else if ($user_obj->didSendRequest($row["username"])) {
-              $button = "<input class='default profile-button' value='Request Sent'>";
+              $button = "<input type='submit' class='default profile-button' value='Request Sent'>";
             } else {
               $button = "<input type='submit' name='" . $row['username'] . "'
                                 class='success profile-button' value='Add Friend'>";
             }
 
             $mutual_friends = $user_obj->getMutualFriends($row["username"]) . " friends in common";
+
+
+            // Button forms
+            if ( isset($_POST[$row["username"]]) ) {
+
+              if ($user_obj->isFriend($row["username"])) {
+                $user_obj->removeFriend($row["username"]);
+                header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+              } else if ($user_obj->didReceiveRequest($row["username"])) {
+                header("Location: requests.php");
+              } else if ($user_obj->didSendRequest($row["username"])) {
+                // Code here...
+              } else {
+                $user_obj->sendRequest($row["username"]);
+                header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+              }
+
+            }
+
 
           } else {
             $mutual_friends = "This is you";
