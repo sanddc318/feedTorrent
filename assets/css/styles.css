@@ -485,4 +485,16 @@ textarea:focus { outline: 0; }
 }
 
 .search-results-footer a { color: #fff; }
+
+.search-result {
+  padding: 10px;
+  height: 100px;
+}
+
+.search-page-friend-button { float: right; }
+
+.result-profile-pic {
+  float: left;
+  margin-right: 10px;
+}
 /* //////////////////////////////// */
