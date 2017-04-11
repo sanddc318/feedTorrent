@@ -526,7 +526,5 @@ textarea:focus { outline: 0; }
   line-height: 20px;
 }
 
-.close-account-text {
-  color: #aaa;
-}
+.close-account-text { color: #aaa; }
 /* //////////////////////////////// */

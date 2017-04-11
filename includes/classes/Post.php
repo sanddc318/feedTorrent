@@ -16,6 +16,25 @@
       $check_empty = preg_replace( "/\s+/", "", "$body" ); // Removes all whitespace
 
       if ( $check_empty != "" ) {
+
+        // For YouTube embedding
+        $body_array = preg_split("/\s+/", $body);
+
+        foreach($body_array as $key => $value) {
+
+          if (strpos($value, "www.youtube.com/watch?v=") !== false) {
+            $link = preg_split("!&!", $value);
+            $value = preg_replace("!watch\?v=!", "embed/", $link[0]);
+            $value = "<br>
+                      <iframe width=\'420\' height=\'315\' src=\'" . $value . "\'></iframe>
+                      <br>";
+            $body_array[$key] = $value;
+          }
+
+        }
+        $body = implode(" ", $body_array); // End YouTube stuff
+
+
         $date_added = date( "Y-m-d H:i:s" );
         $added_by = $this->user_obj->getUsername();
 
