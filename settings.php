@@ -48,7 +48,7 @@
 
   <!-- Close Account -->
   <h4>Close Account</h4>
-  <form action="settings.php">
-    <input type="submit" id="save-details" name="close-account" value="Close Account">
+  <form action="settings.php" method="POST">
+    <input type="submit" id="close-account" name="close-account-submit" value="Close Account">
   </form>
 </div>

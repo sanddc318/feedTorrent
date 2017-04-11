@@ -72,4 +72,7 @@
 
 
   // Close user account
+  if (isset($_POST["close-account-submit"])) {
+    header("Location: close-account.php");
+  }
 ?>
