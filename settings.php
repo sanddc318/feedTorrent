@@ -39,7 +39,10 @@
   <form action="settings.php" method="POST">
     Old Password: <input type="password" name="old-password"> <br>
     New Password: <input type="password" name="new-password"> <br>
-    Confirm New Password: <input type="password" name="new-password1"> <br>
+    Confirm New Password: <input type="password" name="new-password2"> <br>
+
+    <?php echo $password_message; ?>
+
     <input type="submit" id="save-details" name="change-password-submit" value="Change Password">
   </form>
 
