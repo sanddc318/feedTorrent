@@ -41,6 +41,14 @@ a:hover {
 .success { background-color: #2ecc71 }
 .info { background-color: #3498db; }
 .primary { background-color: #0043f0; }
+
+.button {
+  height: 30px;
+  border-radius: 5px;
+  margin: 7px 0 0 7px;
+  border: none;
+  color: #fff;
+}
 /* //////////////////////////////// */
 
 
@@ -496,5 +504,29 @@ textarea:focus { outline: 0; }
 .result-profile-pic {
   float: left;
   margin-right: 10px;
+}
+/* //////////////////////////////// */
+
+
+
+/* Settings page */
+#small-profile-pic {
+  height: 55px;
+  margin: 1px 12px 0 2px;
+  float: left;
+}
+
+#settings-input {
+  border: 1px solid #ccc;
+  height: 20px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.close-account-text {
+  color: #aaa;
 }
 /* //////////////////////////////// */
