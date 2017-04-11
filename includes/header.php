@@ -85,7 +85,7 @@
       <!-- Home -->
       <a href="index.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i></a>
       <!-- Settings -->
-      <a href="#" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i></a>
+      <a href="settings.php" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i></a>
       <!-- Messages -->
       <a href="javascript:void(0)"
          onclick="getDropdownData('<?php echo $loggedInUser; ?>', 'message')"
