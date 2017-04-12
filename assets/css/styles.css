@@ -58,8 +58,8 @@ a:hover {
   width: 100%;
   min-width: 1050px;
   height: 40px;
-  background-color: #d3d3d3;
-  border-bottom: .25em solid #ccc;
+  background-color: #fff;
+  border-bottom: .25em solid #ddd;
   margin: 0 0 10px 0;
   display: inline-flex;
   position: fixed;
@@ -73,27 +73,45 @@ a:hover {
   position: relative;
   top: 9px;
   text-shadow: #888 0.5px 0.5px 0px;
-  color: #333;
+  color: #666;
+}
+
+.emphasis { color: #e74c3c }
+
+.user { padding-right: 0px; }
+
+.user-avatar {
+  opacity: 1;
+  padding-left: 6px;
+}
+
+.user-avatar img {
+  height: 25px;
+  border-radius: 50%;
 }
 
 nav {
   float: right;
   position: absolute;
   right: 1px;
-  margin: 10px;
+  margin: 7px 10px;
 }
 
 nav a {
   position: relative;
-  color: #fff;
+  color: #666;
   text-decoration: none;
   font-size: 17px;
   display: inline-block;
   text-align: center;
   padding: 0px 12px 8px 12px;
   margin: 0;
+  opacity: .7
 }
-nav a:hover { color: #fff; }
+nav a:hover {
+  color: #e74c3c;
+  opacity: 1;
+}
 
 nav a.nav-link {
   border-bottom: transparent;
@@ -101,8 +119,8 @@ nav a.nav-link {
   transition-duration: .2s;
 }
 nav a.nav-link:hover {
-  color: #333;
-  border-bottom: .25em solid #333;
+  color: #e74c3c;
+  border-bottom: .25em solid #e74c3c;
 }
 /* //////////////////////////////// */
 
@@ -450,24 +468,29 @@ textarea:focus { outline: 0; }
 
 .search #search-text-input {
   border: thin solid #e5e5e5;
+  border-right: transparent;
   float: left;
   height: 23px;
   outline: 0;
-  width: 100px;
+  width: 175px;
+  padding: 5px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .button-holder {
-  background-color: #f1f1f1;
+  background-color: #fff;
   border: thin solid #e5e5e5;
+  border-left: transparent;
   cursor: pointer;
   float: left;
   height: 23px;
   text-align: center;
   width: 40px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .button-holder img {

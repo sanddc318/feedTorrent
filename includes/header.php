@@ -40,7 +40,7 @@
   <!-- Navigation bar -->
   <div class="top-bar">
     <div class="logo">
-      <a href="index.php">Swirlfeed!</a>
+      <a href="index.php"><span class="emphasis">feed</span>Torrent!</a>
     </div>
 
     <div class="search">
@@ -79,6 +79,10 @@
       <!-- Logged in user -->
       <a href="<?php echo $loggedInUser; ?>" class="user">
         <?php echo $user["first_name"]; ?>
+      </a>
+      <!-- Logged in user avatar -->
+      <a href="<?php echo $loggedInUser; ?>" class="user-avatar">
+        <img src="<?php echo $user['profile_pic']; ?>">
       </a>
       <!-- Home -->
       <a href="index.php" class="nav-link"><i class="fa fa-home" aria-hidden="true"></i></a>
