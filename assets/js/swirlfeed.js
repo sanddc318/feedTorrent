@@ -1,3 +1,4 @@
+// Expand triggers
 $(document).ready(function() {
   // Expands live search bar
   $("#search-text-input").focus(function() {
@@ -6,7 +7,7 @@ $(document).ready(function() {
     }
   });
 
-  // Expands post area
+  // Expands new post area
   $("#post-text").focus(function() {
     if (window.matchMedia("(min-width: 800px)").matches) {
       $(this).animate({height: "150px"}, 500);

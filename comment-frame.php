@@ -26,7 +26,8 @@
 <body>
 
   <style>
-    * {
+    body, html {
+      background-color: transparent;
       font-size: 12px;
       font-family: Arial, Helvetica, sans-serif;
     }

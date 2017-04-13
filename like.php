@@ -25,8 +25,8 @@
 </head>
 <body>
   <style>
-    body {
-      background-color: #fff;
+    body, html {
+      background-color: transparent;
       font-family: Arial, Helvetica, sans-serif;
     }
 

@@ -8,6 +8,7 @@
   }
 ?>
 
+  <!-- User panel -->
   <div class="user-details column">
     <a href="<?php echo $loggedInUser; ?>">
       <img src="<?php echo $user["profile_pic"]; ?>">
@@ -53,6 +54,7 @@
     </form>
   </div>
 
+  <!-- Posts area -->
   <div class="main-column column">
     <div class="posts-area"></div>
     <img id="loading" src="assets/images/icons/spinner.gif" style="width: 100%;">

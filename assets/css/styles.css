@@ -174,6 +174,7 @@ span.category {
   padding: 0;
   margin: 0;
 }
+
 textarea:focus { outline: 0; }
 
 .main-column {
@@ -243,6 +244,10 @@ textarea:focus { outline: 0; }
   border-radius: 5px;
 }
 
+#post-body {
+  color: #666;
+}
+
 .newsfeed-post-options {
   padding: 0px;
   text-decoration: none;
@@ -254,11 +259,11 @@ textarea:focus { outline: 0; }
   border: 0;
   height: 17px;
   width: 128px;
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 
 .comment-like {
-  background-color: #fff;
+  background-color: transparent;
   border: none;
   font-size: 14px;
   color: #337ab7;
@@ -271,6 +276,7 @@ textarea:focus { outline: 0; }
 .comment-like:focus { outline: 0; }
 
 .like-value {
+  background-color: transparent;
   display: inline;
   font-size: 14px;
 }
@@ -287,6 +293,13 @@ textarea:focus { outline: 0; }
   position: relative;
   right: -15px;
 }
+
+.no-more-posts {
+  text-align: center;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 20px 0px;
+}
 /* //////////////////////////////// */
 
 
@@ -295,7 +308,7 @@ textarea:focus { outline: 0; }
 #comment-iframe {
   max-height: 250px;
   width: 100%;
-  margin-top: 5px;
+  background-color: #F5F8FA;
 }
 
 .comment-section { padding: 0 5px 5px 5px; }
@@ -306,11 +319,10 @@ textarea:focus { outline: 0; }
 }
 
 #comment-form textarea {
-  border: #d3d3d3;
+  border: 1px solid #d3d3d3;
   border-radius: 5px;
   width: 85%;
   height: 35px;
-  color: #616060;
   font-size: 13px;
   margin: 3px 3px 3px 5px;
   padding: 5px;

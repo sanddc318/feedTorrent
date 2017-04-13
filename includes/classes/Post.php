@@ -268,6 +268,9 @@
 
 
 
+
+
+
     public function loadPostsFriends( $data, $limit ) {
       $page = $data["page"];
       $loggedInUser = $this->user_obj->getUsername();
@@ -485,12 +488,20 @@
                    <input type='hidden' class='noMorePosts' value='false'>";
         } else {
           $str .= "<input type='hidden' class='noMorePosts' value='true'>
-                   <p style='text-align: center;'>No more posts to show</p>";
+                   <p class='no-more-posts'>No more posts to show</p>";
         }
 
       } // End if block ( mysqli_num_rows($data_query) > 0 )
       echo $str;
     } // End loadPostsFriends function
+
+
+
+
+
+
+
+
 
 
 
