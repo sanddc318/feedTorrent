@@ -6,6 +6,14 @@ $(document).ready(function() {
     }
   });
 
+  // Expands post area
+  $("#post-text").focus(function() {
+    if (window.matchMedia("(min-width: 800px)").matches) {
+      $(this).animate({height: "150px"}, 500);
+      $("#post-message, #post_button").css({"display": "block"});
+    }
+  });
+
   // Submit live search query
   $(".button-holder").on("click", function() {
     document.search_form.submit();

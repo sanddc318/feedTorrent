@@ -99,8 +99,8 @@
         method="POST"
         name="postComment<?php echo $post_id; ?>"
   >
-    <textarea name="post-body"></textarea>
-    <input type="submit" name="postComment<?php echo $post_id; ?>" value="Post">
+    <textarea name="post-body" placeholder="Say something!"></textarea>
+    <input type="submit" name="postComment<?php echo $post_id; ?>" value="Comment">
   </form>
 
   <!-- Load comments -->
