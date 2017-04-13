@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Swirlfeed | Sign Up</title>
+  <title>feedTorrent! | Sign Up</title>
   <!-- Googlefonts -->
   <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
   <!-- CSS -->
@@ -34,7 +34,7 @@
   <div class="wrapper">
     <div class="login-box">
       <div class="login-header">
-        <h1>Swirlfeed!</h1>
+        <h1><span class="emphasis">feed</span>Torrent!</h1>
         <span>Login or signup below</span>
       </div>
 

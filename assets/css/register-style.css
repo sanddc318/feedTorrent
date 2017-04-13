@@ -3,19 +3,16 @@ html, body {
   min-height: 100%;
 }
 
-html {
-  background-image: url("../images/backgrounds/swirls.gif");
-}
-
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #F5F8FA;
 }
 
 a {
   text-decoration: none;
-  color: #52afdd;
+  color: #e74c3c;
   font-size: .9em;
   display: block;
   margin-bottom: 20px;
@@ -48,30 +45,30 @@ form { text-align: center; }
 .login-header {
   width: 100%;
   height: 90px;
-  border-bottom: 5px solid #52afdd;
+  border-bottom: 5px solid #e74c3c;
   color: #999;
   text-align: center;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  font-family: 'Merienda One', cursive;
 }
 
 .login-header h1 {
   margin: 0;
-  color: #333;
+  color: #666;
   text-shadow: #888 0.5px 0.5px 0px;
   font-size: 2em;
+  font-family: 'Merienda One', cursive;
 }
 
+.emphasis { color: #e74c3c; }
+
 input[type="submit"] {
-  background-color: #52afdd;
+  background-color: #e74c3c;
   margin: 15px 0px;
   padding: 5px 10px;
   border: none;
   border-radius: 3px;
-  font-family: 'Merienda One', cursive;
-  color: #333;
-  text-shadow: #888 0.5px 0.5px 0px;
+  color: #fff;
   font-size: 1em;
 }
 
@@ -89,7 +86,7 @@ input[type="password"] {
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="password"]:hover {
-  border-color: #52afdd;
+  border-color: #e74c3c;
 }
 
 input[type="text"]:focus,

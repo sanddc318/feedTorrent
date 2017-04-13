@@ -19,7 +19,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome to Swirlfeed</title>
+  <title>Welcome to feedTorrent!</title>
   <!-- Googlefonts -->
   <link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
   <!-- Font Awesome -->
