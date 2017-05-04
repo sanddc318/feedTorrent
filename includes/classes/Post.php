@@ -96,16 +96,42 @@
 			    youngest your yours z lol haha omg hey ill iframe wonder else like
           hate sleepy reason for some little yes bye choose";
 
+          // Convert to array, split at whitespaces
           $stopWords = preg_split("/[\s,]+/", $stopWords);
           $noPuncuation = preg_replace("/[^a-zA-Z 0-9]/", "", $body);
 
           // Trying to account for links
           if (strpos($noPuncuation, "height") === false && strpos($noPuncuation, "width") === false
-              && strpos($noPuncuation, "http") === false) {
-             $noPuncuation = preg_split("/[\s,]+/", $noPuncuation);
-          }
+              && strpos($noPuncuation, "http") === false && strpos($noPuncuation, "youtube") === false) {
+             $keywords = preg_split("/[\s,]+/", $noPuncuation);
+
+             foreach($stopWords as $value) {
+               foreach($keywords as $key => $value2) {
+
+                 if (strtolower($value) == strtolower($value2)) {
+                   $keywords[$key] = "";
+                 }
+
+               } // End inner foreach
+             } // End outer foreach
+
+             foreach ($keywords as $value) {
+               $this->calculateTrends(ucfirst($value));
+             }
+          } // End outer if block
 
       } // End outermost if block, checking if post was empty
+    }
+
+    public function calculateTrends($term) {
+      if ($term != "") {
+        $query = mysqli_query($this->con, "SELECT * FROM trends WHERE title = '$term'");
+
+        if (mysqli_num_rows($query) == 0)
+          $insert_query = mysqli_query($this->con, "INSERT INTO trends (title, hits) VALUES ('$term', '1')");
+        else
+          $insert_query = mysqli_query($this->con, "UPDATE trends SET hits = hits + 1 WHERE title = '$term'");
+      }
     }
 
     public function getSinglePost($post_id) {
