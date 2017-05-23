@@ -94,7 +94,7 @@
 			    which while who whole whose why will with within without work
 			    worked working works would x y year years yet you young younger
 			    youngest your yours z lol haha omg hey ill iframe wonder else like
-          hate sleepy reason for some little yes bye choose type thing";
+          hate sleepy reason for some little yes bye choose type thing words";
 
           // Convert to array, split at whitespaces
           $stopWords = preg_split("/[\s,]+/", $stopWords);
